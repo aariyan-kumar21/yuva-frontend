@@ -291,6 +291,8 @@ button {
     border-radius: 16px;
     border: 1px solid var(--color-border);
     transition: transform var(--transition-normal), border-color var(--transition-normal);
+    display: flex;
+    flex-direction: column;
 }
 
 .feature-card:hover {
@@ -300,7 +302,7 @@ button {
 
 .feature-image {
     width: 100%;
-    height: auto;
+    aspect-ratio: 16 / 9;
     border-radius: 8px;
     margin-bottom: var(--space-sm);
     object-fit: cover;
