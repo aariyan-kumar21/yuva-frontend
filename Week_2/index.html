@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 18</title>
+    <meta name="description" content="Discover the new iPhone 18 smartphone. Forged in titanium, featuring unmatched chip speed and professional camera system.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Space Grotesk for headings, Inter for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- #page-wrapper is used for the inert polyfill/fallback when modal opens -->
+    <div id="page-wrapper">
+        <header class="site-header">
+            <div class="container header-container">
+                <a href="#" class="logo">iPhone 18</a>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">
+                    <span class="hamburger">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </span>
+                </button>
+                <nav id="main-nav" class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="#features" class="nav-link">Specs</a></li>
+                        <li><a href="#camera" class="nav-link">Camera</a></li>
+                        <li><a href="#colors" class="nav-link">Colors</a></li>
+                        <li><a href="#pre-order" class="nav-link nav-link-btn">Buy now</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO SECTION -->
+            <section class="hero" id="hero">
+                <div class="container hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">iPhone 18</h1>
+                        <p class="hero-subtitle">Forged in aerospace-grade titanium. The fastest chip ever in a smartphone. A completely new level of pro.</p>
+                        <div class="hero-actions">
+                            <a href="#pre-order" class="btn btn-primary">Buy at ₹1,64,900</a>
+                            <a href="#compare" class="btn btn-secondary">Compare specs</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <img src="iphone18.jpg" alt="iPhone 18" class="phone-image">
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURES SECTION -->
+            <section class="features" id="features">
+                <div class="container">
+                    <h2 class="section-title">Beyond Pro</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <img src="a20-pro-chip.jpg" alt="A20 Pro Chip" class="feature-image">
+                            <h3>A20 Pro</h3>
+                            <p>Mind-blowing speed with our next-generation architecture.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Titanium Frame</h3>
+                            <p>Aerospace-grade strength, incredibly lightweight design.</p>
+                        </div>
+                        <div class="feature-card">
+                            <img src="battery-feature.jpg" alt="All-Day Battery" class="feature-image">
+                            <h3>All-Day Battery</h3>
+                            <p>Up to 29 hours of video playback on a single charge.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Super Retina XDR</h3>
+                            <p>Peak brightness of 3000 nits. Brilliant in any light.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CAMERA SECTION -->
+            <section class="camera" id="camera">
+                <div class="container camera-container">
+                    <h2 class="section-title">Pro Camera System</h2>
+                    <ul class="camera-specs">
+                        <li class="camera-spec-item">
+                            <h3 class="camera-spec-title">48MP Main</h3>
+                            <p class="camera-spec-desc">Capture ultra-high-resolution photos with unmatched detail and color accuracy.</p>
+                        </li>
+                        <li class="camera-spec-item">
+                            <h3 class="camera-spec-title">5x Telephoto</h3>
+                            <p class="camera-spec-desc">Get closer from farther away with the longest optical zoom ever in iPhone 18.</p>
+                        </li>
+                        <li class="camera-spec-item">
+                            <h3 class="camera-spec-title">Ultra Wide</h3>
+                            <p class="camera-spec-desc">Expansive field of view perfect for dramatic landscapes and macro photography.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- COLORS SECTION -->
+            <section class="colors" id="colors">
+                <div class="container colors-container">
+                    <div class="colors-selector">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Four Stunning Finishes</h2>
+                        <div class="colors-list">
+                            <button class="color-btn active" data-index="0">
+                                <span class="swatch-circle" style="background-color: #2c2d2f;"></span>
+                                <span class="swatch-label">Black</span>
+                            </button>
+                            <button class="color-btn" data-index="1">
+                                <span class="swatch-circle" style="background-color: #728fb5;"></span>
+                                <span class="swatch-label">Glacier</span>
+                            </button>
+                            <button class="color-btn" data-index="2">
+                                <span class="swatch-circle" style="background-color: #5c2d46;"></span>
+                                <span class="swatch-label">Burgundy</span>
+                            </button>
+                            <button class="color-btn" data-index="3">
+                                <span class="swatch-circle" style="background-color: #b0b3b8;"></span>
+                                <span class="swatch-label">Silver</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="colors-display">
+                        <div class="phones-viewport">
+                            <img src="phones-colors.jpg" alt="iPhone 18 Finishes" id="phones-slider">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <div class="container footer-container">
+                <div class="footer-brand">
+                    <div class="logo">iPhone 18</div>
+                    <p class="footer-blurb">Designing the future, one device at a time.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#">iPhone 18</a></li>
+                            <li><a href="#">iPhone 18 Pro</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Compare</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Newsroom</a></li>
+                            <li><a href="#">Environment</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Buy</h4>
+                        <ul>
+                            <li><a href="#">Store</a></li>
+                            <li><a href="#">Financing</a></li>
+                            <li><a href="#">Trade-in</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>&copy; 2024 iPhone 18 Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div> <!-- end #page-wrapper -->
+
+    <!-- COLOR QUICK-LOOK MODAL -->
+    <div id="color-modal" class="modal-backdrop" aria-hidden="true">
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close-btn" aria-label="Close dialog">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="modal-body">
+                    <div id="modal-color-preview" class="modal-color-circle"></div>
+                    <h2 id="modal-title" class="modal-title">Color Name</h2>
+                    <p id="modal-desc" class="modal-desc">Color description goes here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
