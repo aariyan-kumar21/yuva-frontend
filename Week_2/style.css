@@ -355,7 +355,7 @@ button {
    COLORS SECTION
    ========================================================================== */
 .colors {
-    padding: var(--space-xl) 0;
+    padding: var(--space-xl) 0 3rem;
     background-color: #f2f2f2;
 }
 
