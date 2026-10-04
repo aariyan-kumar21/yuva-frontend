@@ -355,7 +355,7 @@ button {
    COLORS SECTION
    ========================================================================== */
 .colors {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
     background-color: #f2f2f2;
 }
 
@@ -363,7 +363,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
-    gap: var(--space-xl);
+    gap: calc(var(--space-xl) / 2);
 }
 
 .colors-list {
