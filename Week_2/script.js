@@ -207,13 +207,15 @@ function initColorModal() {
 }
 
 /**
- * Initializes the interactive color slider in the Finishes section.
+ * Initializes the interactive color selector in the Finishes section.
  */
 function initColorSlider() {
     const colorBtns = document.querySelectorAll('.color-btn');
-    const phonesViewport = document.querySelector('.phones-viewport');
+    const phonesSlider = document.getElementById('phones-slider');
     
-    if (!colorBtns.length || !phonesViewport) return;
+    if (!colorBtns.length || !phonesSlider) return;
+
+    const colors = ['burgundy.webp', 'glacier.webp', 'silver.webp', 'black.webp'];
 
     colorBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -222,10 +224,11 @@ function initColorSlider() {
             // Add active class to clicked
             btn.classList.add('active');
             
-            // Get index and slide viewport
-            const index = btn.getAttribute('data-index');
-            const shiftPercentage = index * 25; // 4 phones = 25% each
-            phonesViewport.style.transform = `translateX(-${shiftPercentage}%)`;
+            // Get index and update image source
+            const index = parseInt(btn.getAttribute('data-index'), 10);
+            if (!isNaN(index) && colors[index]) {
+                phonesSlider.src = colors[index];
+            }
         });
     });
 }
