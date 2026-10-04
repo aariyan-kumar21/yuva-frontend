@@ -34,7 +34,7 @@ The project utilizes CSS Grid and Flexbox for layout management and uses semanti
    Simply open the `index.html` file in any modern web browser. No local web server or build tool is required.
 
 2. **Testing the Modal:**
-   - **By Mouse:** Scroll down to the "Four Stunning Finishes" section. Click on a color swatch. The modal should open. Click the close button (X) or outside the dialog (on the dark backdrop) to close it.
+   - **By Mouse:** Scroll down to the "Choose from four gorgeous finishes" section. Click on a color swatch. This will update the main phone image on the page, AND the modal will open. Click the close button (X) or outside the dialog (on the dark backdrop) to close it.
    - **By Keyboard:** 
      1. Use the `Tab` key to navigate through the page down to a color swatch. 
      2. Press `Enter` or `Space` to open the modal. 

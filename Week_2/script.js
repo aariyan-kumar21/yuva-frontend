@@ -6,7 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    // initColorModal(); // Disabled old modal
+    initColorModal(); // Disabled old modal
     initColorSlider();
 });
 
