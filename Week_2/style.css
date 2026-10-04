@@ -359,6 +359,10 @@ button {
     background-color: #f2f2f2;
 }
 
+.colors .section-title {
+    margin-bottom: var(--space-sm);
+}
+
 .colors-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
