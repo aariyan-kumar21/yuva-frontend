@@ -570,7 +570,7 @@ ul {
 
 .footer-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
   gap: 3rem;
   margin-bottom: 4rem;
 }
