@@ -10,10 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animate hamburger icon
     const spans = hamburger.querySelectorAll('span');
     if (mobileNav.classList.contains('open')) {
+      hamburger.setAttribute('aria-expanded', 'true');
+      hamburger.setAttribute('aria-label', 'Close menu');
       spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
       spans[1].style.opacity = '0';
       spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
     } else {
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
       spans[0].style.transform = 'none';
       spans[1].style.opacity = '1';
       spans[2].style.transform = 'none';
@@ -24,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
       mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
       const spans = hamburger.querySelectorAll('span');
       spans[0].style.transform = 'none';
       spans[1].style.opacity = '1';

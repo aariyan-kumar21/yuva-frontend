@@ -53,7 +53,37 @@ ul {
   list-style: none;
 }
 
+*:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
 /* Utility Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr-only-focusable:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  padding: 1rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  display: block;
+  text-align: center;
+  z-index: 1000;
+}
 .accent {
   color: var(--accent-color);
 }
@@ -92,7 +122,6 @@ ul {
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  outline: none;
 }
 
 .btn-primary {
@@ -529,7 +558,6 @@ ul {
 }
 
 .form-input:focus {
-  outline: none;
   border-color: var(--accent-color);
 }
 
@@ -588,7 +616,7 @@ ul {
   text-align: center;
   padding-top: 2rem;
   border-top: 1px solid #1a1a1e;
-  color: #52525b;
+  color: #a1a1aa;
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }

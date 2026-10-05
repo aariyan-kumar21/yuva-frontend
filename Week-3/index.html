@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
+  <a href="#main" class="skip-link sr-only sr-only-focusable">Skip to main content</a>
   <header class="header">
     <div class="logo">
       <span class="logo-text">ENIGMA</span>
@@ -25,8 +25,8 @@
       </ul>
       <a href="#join" class="btn btn-outline btn-pill nav-cta">JOIN COMMUNITY</a>
     </nav>
-    <button class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </header>
 
@@ -41,7 +41,7 @@
     </ul>
   </nav>
 
-  <main>
+  <main id="main">
     <!-- HERO SECTION -->
     <section id="home" class="hero section-padding">
       <div class="hero-left">
@@ -207,9 +207,15 @@
         </div>
         <div class="contact-form">
           <form id="contactForm">
-            <input type="text" placeholder="Name" required class="form-input">
-            <input type="email" placeholder="Email" required class="form-input">
-            <textarea placeholder="Message" required rows="5" class="form-input"></textarea>
+            <label for="contact-name" class="sr-only">Name</label>
+            <input type="text" id="contact-name" placeholder="Name" required class="form-input">
+            
+            <label for="contact-email" class="sr-only">Email</label>
+            <input type="email" id="contact-email" placeholder="Email" required class="form-input">
+            
+            <label for="contact-message" class="sr-only">Message</label>
+            <textarea id="contact-message" placeholder="Message" required rows="5" class="form-input"></textarea>
+            
             <button type="submit" class="btn btn-primary btn-pill">SEND MESSAGE</button>
           </form>
         </div>
@@ -218,6 +224,41 @@
   </main>
 
 
+
+  <footer class="footer">
+    <div class="footer-layout">
+      <div class="footer-col brand-col">
+        <div class="logo">
+          <span class="logo-text">ENIGMA</span>
+        </div>
+        <p class="footer-tagline">Student-led collective dedicated to technical rebellion and innovative deployment.</p>
+        <div class="social-links">
+          <a href="#" class="icon-btn" aria-label="ENIGMA on Instagram">Ig</a>
+          <a href="#" class="icon-btn" aria-label="ENIGMA on WhatsApp">Wa</a>
+          <a href="#" class="icon-btn" aria-label="ENIGMA on LinkedIn">In</a>
+        </div>
+      </div>
+      <div class="footer-col nav-col">
+        <h4 class="footer-heading">Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#team">Core Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col contact-col">
+        <h4 class="footer-heading">Contact</h4>
+        <p>enigmaclub5@gmail.com</p>
+        <p>+91 96967 24664</p>
+        <p>JAIN (Deemed-to-be-University), FET<br>Bengaluru - Kanakapura Rd,<br>Bengaluru, Karnataka 562112</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ENIGMA | ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
