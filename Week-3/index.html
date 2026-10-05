@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENIGMA — Student Tech Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">ENIGMA</span>
+    </div>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#team">Core Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#join" class="btn btn-outline btn-pill nav-cta">JOIN COMMUNITY ↗</a>
+    </nav>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#team">Core Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#join" class="btn btn-outline btn-pill">JOIN COMMUNITY ↗</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero section-padding">
+      <div class="hero-left">
+        <h1 class="hero-title">
+          <span>SOLVE THE</span>
+          <br>
+          <span class="accent italic">UNKNOWN.</span>
+        </h1>
+        <p class="hero-desc">
+          A student-led collective building, experimenting, and deploying ideas that challenge the ordinary and create <span class="accent">real-world impact.</span>
+        </p>
+        <div class="hero-buttons">
+          <a href="#explore" class="btn btn-primary">EXPLORE ENIGMA ↗</a>
+          <a href="#join" class="btn btn-outline">JOIN COMMUNITY</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="mission-label mono-label accent">[ OUR MISSION ]</div>
+        <div class="mission-statement">
+          <h2>IDEAS.</h2>
+          <h2>PEOPLE.</h2>
+          <h2>SYSTEMS.</h2>
+          <h2 class="accent">REAL IMPACT.</h2>
+        </div>
+        <p class="mission-desc">
+          We bring together curious minds, fearless builders, and creative problem-solvers to learn, build, and break new ground in technology.
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about section-padding">
+      <div class="about-header">
+        <div class="mono-label">01 / ABOUT</div>
+        <h2 class="section-title">ABOUT<br><span class="accent italic">ENIGMA</span></h2>
+      </div>
+      <div class="about-content">
+        <blockquote class="about-quote">
+          We build without limits. We question what exists, create what doesn't, and empower the next generation of technical minds to make a real impact.
+        </blockquote>
+        <div class="about-list">
+          <div class="about-item">
+            <strong>01 — Tech Innovation:</strong> Fostering creative solutions and cutting-edge technological advancement in a raw technical environment.
+          </div>
+          <div class="about-item">
+            <strong>02 — Core Community:</strong> Building a collaborative network of passionate tech enthusiasts and technical rebels.
+          </div>
+          <div class="about-item">
+            <strong>03 — Mission Excellence:</strong> Striving for technical mastery and professional development through rigorous learning and real-world creation.
+          </div>
+          <div class="about-item">
+            <strong>04 — Mission.log:</strong> Empowering students with the knowledge and community needed to excel in technical innovation and create lasting impact.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="events" class="events section-padding">
+      <h2 class="section-title">OUR <span class="accent italic">EVENTS.</span></h2>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-bg event-bg-upcoming">
+            <span class="badge badge-upcoming">UPCOMING</span>
+          </div>
+          <div class="event-content">
+            <h3 class="event-title">The Race for Roles</h3>
+            <p class="event-details">Auditions 2026<br>September 29, 2026</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-bg event-bg-past">
+            <span class="badge badge-past">PAST</span>
+          </div>
+          <div class="event-content">
+            <h3 class="event-title">Jain's Got Latent</h3>
+            <p class="event-details">April 28, 2026<br>Venue 002</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-bg event-bg-past">
+            <span class="badge badge-past">PAST</span>
+          </div>
+          <div class="event-content">
+            <h3 class="event-title">Blind Date</h3>
+            <p class="event-details">March 17, 2026<br>Venue 002</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE TEAM SECTION -->
+    <section id="team" class="team section-padding">
+      <div class="team-header">
+        <h2 class="section-title">THE <span class="accent italic">CORE TEAM.</span></h2>
+        <p class="team-subtext">The people shaping ENIGMA, driving its initiatives, and turning ideas into meaningful technical experiences.</p>
+      </div>
+      <div class="team-grid">
+        
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-role accent mono-label">President</div>
+          <div class="team-name">Adrija</div>
+          <div class="team-quote">"Leading ENIGMA towards technical rebellion, fostering innovation, and steering the community forward."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">S</span></div>
+          <div class="team-role accent mono-label">Vice President</div>
+          <div class="team-name">Srinjay</div>
+          <div class="team-quote">"Driving operational excellence, coordinating initiatives, and empowering team execution."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">H</span></div>
+          <div class="team-role accent mono-label">Secretary</div>
+          <div class="team-name">Hriddhima</div>
+          <div class="team-quote">"Managing organizational workflows, communications, and aligning club operations."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-role accent mono-label">Tech Lead</div>
+          <div class="team-name">Anchita</div>
+          <div class="team-quote">"Architecting technical builds, leading project development, and mentoring members in cutting-edge technology."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-role accent mono-label">Resource Lead</div>
+          <div class="team-name">Arpita</div>
+          <div class="team-quote">"Strategizing resource management, optimizing asset allocations, and powering club initiatives."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">D</span></div>
+          <div class="team-role accent mono-label">Social Media Lead</div>
+          <div class="team-name">Disha</div>
+          <div class="team-quote">"Crafting digital narratives, managing media outreach, and amplifying ENIGMA's voice."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-role accent mono-label">Photography Lead</div>
+          <div class="team-name">Akshat</div>
+          <div class="team-quote">"Capturing moments, documenting visual stories, and immortalizing every milestone."</div>
+          <div class="team-links">
+            <button class="icon-btn">✉</button><button class="icon-btn">in</button><button class="icon-btn">gh</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact section-padding">
+      <h2 class="section-title">GET IN <span class="accent italic">TOUCH.</span></h2>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <div class="info-item">
+            <strong>Email</strong><br>enigmaclub5@gmail.com
+          </div>
+          <div class="info-item">
+            <strong>Phone</strong><br>+91 96967 24664
+          </div>
+          <div class="info-item">
+            <strong>Address</strong><br>JAIN (Deemed-to-be-University), Faculty of Engineering and Technology (FET), Bengaluru - Kanakapura Rd, Bengaluru, Karnataka 562112
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <input type="text" placeholder="Name" required class="form-input">
+            <input type="email" placeholder="Email" required class="form-input">
+            <textarea placeholder="Message" required rows="5" class="form-input"></textarea>
+            <button type="submit" class="btn btn-primary btn-pill">SEND MESSAGE ↗</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
