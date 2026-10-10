@@ -71,14 +71,16 @@ ul {
 }
 
 .sr-only-focusable:focus-visible {
-  position: static;
-  width: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: auto;
   margin: 0;
   overflow: visible;
   clip: auto;
   padding: 1rem;
-  background-color: var(--accent-color);
+  background-color: #7c3aed;
   color: #fff;
   display: block;
   text-align: center;
@@ -125,12 +127,12 @@ ul {
 }
 
 .btn-primary {
-  background-color: var(--accent-color);
+  background-color: #7c3aed;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background-color: #6d28d9;
 }
 
 .btn-outline {
@@ -217,6 +219,7 @@ ul {
 }
 
 .mobile-nav {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -224,16 +227,18 @@ ul {
   height: 100vh;
   background-color: var(--bg-color);
   z-index: 99;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transform: translateY(-100%);
-  transition: transform 0.4s ease;
+  visibility: hidden;
+  transition: transform 0.4s ease, visibility 0s linear 0.4s;
 }
 
 .mobile-nav.open {
   transform: translateY(0);
+  visibility: visible;
+  transition-delay: 0s;
 }
 
 .mobile-nav-links {
@@ -296,6 +301,10 @@ ul {
 .mission-statement h2 {
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.1;
+}
+
+.mission-statement h2 span {
+  display: block;
 }
 
 .mission-desc {
@@ -463,7 +472,12 @@ ul {
 }
 
 .team-role {
+  color: #a78bfa;
   margin-bottom: 0.5rem;
+}
+
+.team-card .accent {
+  color: #a78bfa;
 }
 
 .team-name {
@@ -561,6 +575,13 @@ ul {
   border-color: var(--accent-color);
 }
 
+.form-status {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #a78bfa;
+}
+
 /* Footer */
 .footer {
   background-color: #050505;
@@ -586,6 +607,9 @@ ul {
 }
 
 .footer-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
@@ -652,6 +676,10 @@ ul {
   .hamburger {
     display: flex;
   }
+
+  .mobile-nav {
+    display: flex;
+  }
   
   .section-title {
     font-size: 2.5rem;
@@ -667,5 +695,19 @@ ul {
   
   .hero-buttons .btn {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

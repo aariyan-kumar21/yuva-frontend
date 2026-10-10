@@ -15,7 +15,7 @@
     <div class="logo">
       <span class="logo-text">ENIGMA</span>
     </div>
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary">
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -23,25 +23,25 @@
         <li><a href="#team">Core Team</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <a href="#join" class="btn btn-outline btn-pill nav-cta">JOIN COMMUNITY</a>
+      <a href="#contact" class="btn btn-outline btn-pill nav-cta">JOIN COMMUNITY</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </header>
 
-  <nav class="mobile-nav" id="mobile-nav">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
     <ul class="mobile-nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#team">Core Team</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#join" class="btn btn-outline btn-pill">JOIN COMMUNITY</a></li>
+      <li><a href="#contact" class="btn btn-outline btn-pill">JOIN COMMUNITY</a></li>
     </ul>
   </nav>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <!-- HERO SECTION -->
     <section id="home" class="hero section-padding">
       <div class="hero-left">
@@ -54,17 +54,19 @@
           A student-led collective building, experimenting, and deploying ideas that challenge the ordinary and create <span class="accent">real-world impact.</span>
         </p>
         <div class="hero-buttons">
-          <a href="#explore" class="btn btn-primary">EXPLORE ENIGMA </a>
-          <a href="#join" class="btn btn-outline">JOIN COMMUNITY</a>
+          <a href="#about" class="btn btn-primary">EXPLORE ENIGMA </a>
+          <a href="#contact" class="btn btn-outline">JOIN COMMUNITY</a>
         </div>
       </div>
       <div class="hero-right">
         <div class="mission-label mono-label accent">[ OUR MISSION ]</div>
         <div class="mission-statement">
-          <h2>IDEAS.</h2>
-          <h2>PEOPLE.</h2>
-          <h2>SYSTEMS.</h2>
-          <h2 class="accent">REAL IMPACT.</h2>
+          <h2>
+            <span>IDEAS.</span>
+            <span>PEOPLE.</span>
+            <span>SYSTEMS.</span>
+            <span class="accent">REAL IMPACT.</span>
+          </h2>
         </div>
         <p class="mission-desc">
           We bring together curious minds, fearless builders, and creative problem-solvers to learn, build, and break new ground in technology.
@@ -139,51 +141,51 @@
       <div class="team-grid">
         
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">A</span></div>
           <div class="team-role accent mono-label">President</div>
-          <div class="team-name">Adrija</div>
+          <h3 class="team-name">Adrija</h3>
           <div class="team-quote">"Leading ENIGMA towards technical rebellion, fostering innovation, and steering the community forward."</div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">S</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">S</span></div>
           <div class="team-role accent mono-label">Vice President</div>
-          <div class="team-name">Srinjay</div>
+          <h3 class="team-name">Srinjay</h3>
           <div class="team-quote">"Driving operational excellence, coordinating initiatives, and empowering team execution."</div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">H</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">H</span></div>
           <div class="team-role accent mono-label">Secretary</div>
-          <div class="team-name">Hriddhima</div>
+          <h3 class="team-name">Hriddhima</h3>
           <div class="team-quote">"Managing organizational workflows, communications, and aligning club operations."</div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">A</span></div>
           <div class="team-role accent mono-label">Tech Lead</div>
-          <div class="team-name">Anchita</div>
+          <h3 class="team-name">Anchita</h3>
           <div class="team-quote">"Architecting technical builds, leading project development, and mentoring members in cutting-edge technology."</div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">A</span></div>
           <div class="team-role accent mono-label">Resource Lead</div>
-          <div class="team-name">Arpita</div>
+          <h3 class="team-name">Arpita</h3>
           <div class="team-quote">"Strategizing resource management, optimizing asset allocations, and powering club initiatives."</div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">D</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">D</span></div>
           <div class="team-role accent mono-label">Social Media Lead</div>
-          <div class="team-name">Disha</div>
+          <h3 class="team-name">Disha</h3>
           <div class="team-quote">"Crafting digital narratives, managing media outreach, and amplifying ENIGMA's voice."</div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo"><span class="team-initial">A</span></div>
+          <div class="team-photo"><span class="team-initial" aria-hidden="true">A</span></div>
           <div class="team-role accent mono-label">Photography Lead</div>
-          <div class="team-name">Akshat</div>
+          <h3 class="team-name">Akshat</h3>
           <div class="team-quote">"Capturing moments, documenting visual stories, and immortalizing every milestone."</div>
         </div>
 
@@ -203,23 +205,28 @@
         </div>
         <p class="footer-tagline">Student-led collective dedicated to technical rebellion and innovative deployment.</p>
         <div class="social-links">
+          <!-- Real URL goes here -->
           <a href="#" class="icon-btn" aria-label="ENIGMA on Instagram">Ig</a>
+          <!-- Real URL goes here -->
           <a href="#" class="icon-btn" aria-label="ENIGMA on WhatsApp">Wa</a>
+          <!-- Real URL goes here -->
           <a href="#" class="icon-btn" aria-label="ENIGMA on LinkedIn">In</a>
         </div>
       </div>
       <div class="footer-col nav-col">
-        <h4 class="footer-heading">Navigation</h4>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#team">Core Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <p class="footer-heading">Navigation</p>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#team">Core Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
       </div>
       <div class="footer-col contact-col">
-        <h4 class="footer-heading">Contact</h4>
+        <p class="footer-heading">Contact</p>
         <p>enigmaclub5@gmail.com</p>
         <p>+91 96967 24664</p>
         <p>JAIN (Deemed-to-be-University), FET<br>Bengaluru - Kanakapura Rd,<br>Bengaluru, Karnataka 562112</p>
@@ -238,6 +245,7 @@
             
             <button type="submit" class="btn btn-primary btn-pill">SEND MESSAGE</button>
           </form>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
         </div>
       </div>
     </div>
