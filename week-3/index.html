@@ -12,19 +12,23 @@
 <body>
   <a href="#main" class="skip-link sr-only sr-only-focusable">Skip to main content</a>
   <header class="header">
-    <div class="logo">
+    <a href="#home" class="logo">
+      <img src="assets/enigma-logo.jpg" alt="ENIGMA Logo" class="logo-img">
       <span class="logo-text">ENIGMA</span>
-    </div>
+    </a>
     <nav class="nav" aria-label="Primary">
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
+        <li><a href="#home" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#team">Core Team</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Secure</a></li>
       </ul>
-      <a href="#contact" class="btn btn-outline btn-pill nav-cta">JOIN COMMUNITY</a>
+      <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
     </nav>
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-pill nav-cta">Join Community</a>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
@@ -32,12 +36,12 @@
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
     <ul class="mobile-nav-links">
-      <li><a href="#home">Home</a></li>
+      <li><a href="#home" class="active">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#team">Core Team</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#contact" class="btn btn-outline btn-pill">JOIN COMMUNITY</a></li>
+      <li><a href="#contact">Secure</a></li>
+      <li><a href="#contact" class="btn btn-pill nav-cta">Join Community</a></li>
     </ul>
   </nav>
 
@@ -54,8 +58,8 @@
           A student-led collective building, experimenting, and deploying ideas that challenge the ordinary and create <span class="accent">real-world impact.</span>
         </p>
         <div class="hero-buttons">
-          <a href="#about" class="btn btn-primary">EXPLORE ENIGMA </a>
-          <a href="#contact" class="btn btn-outline">JOIN COMMUNITY</a>
+          <a href="#about" class="btn btn-pill hero-btn-primary">Explore Enigma</a>
+          <a href="#contact" class="btn btn-pill hero-btn-secondary">Join Community</a>
         </div>
       </div>
       <div class="hero-right">
@@ -84,18 +88,83 @@
         <blockquote class="about-quote">
           We build without limits. We question what exists, create what doesn't, and empower the next generation of technical minds to make a real impact.
         </blockquote>
-        <div class="about-list">
-          <div class="about-item">
-            <strong>01 — Tech Innovation:</strong> Fostering creative solutions and cutting-edge technological advancement in a raw technical environment.
+        <!-- FLOWCHART SYSTEM -->
+        <div class="flowchart-container">
+          <!-- Central Origin Node -->
+          <div class="flowchart-root">
+            <div class="flowchart-root-node">
+              <img src="assets/enigma-logo.jpg" alt="" class="flowchart-root-logo" aria-hidden="true">
+              <span class="flowchart-root-label">ENIGMA</span>
+            </div>
+            <div class="flowchart-stem" aria-hidden="true"></div>
           </div>
-          <div class="about-item">
-            <strong>02 — Core Community:</strong> Building a collaborative network of passionate tech enthusiasts and technical rebels.
-          </div>
-          <div class="about-item">
-            <strong>03 — Mission Excellence:</strong> Striving for technical mastery and professional development through rigorous learning and real-world creation.
-          </div>
-          <div class="about-item">
-            <strong>04 — Mission.log:</strong> Empowering students with the knowledge and community needed to excel in technical innovation and create lasting impact.
+
+          <!-- Tree Branches & Cards -->
+          <div class="flowchart-tree">
+            <div class="flowchart-trunk" aria-hidden="true"></div>
+            <div class="flowchart-grid">
+              
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">01</span>
+                    <span class="card-category">TECH</span>
+                  </div>
+                  <h3 class="card-heading">Tech Innovation</h3>
+                  <p class="card-text">Fostering creative solutions and cutting-edge technological advancement in a raw technical environment.</p>
+                </div>
+              </div>
+
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">02</span>
+                    <span class="card-category">COMMUNITY</span>
+                  </div>
+                  <h3 class="card-heading">Core Community</h3>
+                  <p class="card-text">Building a collaborative network of passionate tech enthusiasts and technical rebels.</p>
+                </div>
+              </div>
+
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">03</span>
+                    <span class="card-category">MISSION</span>
+                  </div>
+                  <h3 class="card-heading">Mission Excellence</h3>
+                  <p class="card-text">Striving for technical mastery and professional development through rigorous learning and real-world creation.</p>
+                </div>
+              </div>
+
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">04</span>
+                    <span class="card-category">SYSTEM</span>
+                  </div>
+                  <h3 class="card-heading">Mission.log</h3>
+                  <p class="card-text">Empowering students with the knowledge and community needed to excel in technical innovation and create lasting impact.</p>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -208,12 +277,9 @@
         </div>
         <p class="footer-tagline">Student-led collective dedicated to technical rebellion and innovative deployment.</p>
         <div class="social-links">
-          <!-- Real URL goes here -->
-          <a href="#" class="icon-btn" aria-label="ENIGMA on Instagram">Ig</a>
-          <!-- Real URL goes here -->
-          <a href="#" class="icon-btn" aria-label="ENIGMA on WhatsApp">Wa</a>
-          <!-- Real URL goes here -->
-          <a href="#" class="icon-btn" aria-label="ENIGMA on LinkedIn">In</a>
+          <a href="https://www.instagram.com/ju_enigma/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on Instagram" title="Visit ENIGMA on Instagram">Ig</a>
+          <a href="#" class="icon-btn" aria-label="ENIGMA on WhatsApp" title="WhatsApp">Wa</a>
+          <a href="https://www.linkedin.com/company/enigma-club-ju/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on LinkedIn" title="Visit ENIGMA on LinkedIn">In</a>
         </div>
       </div>
       <div class="footer-col nav-col">
@@ -232,21 +298,35 @@
         <p class="footer-heading">Contact</p>
         <p><a href="mailto:enigmaclub5@gmail.com">enigmaclub5@gmail.com</a></p>
         <p><a href="tel:+919696724664">+91 96967 24664</a></p>
-        <p>JAIN (Deemed-to-be-University), FET<br>Bengaluru - Kanakapura Rd,<br>Bengaluru, Karnataka 562112</p>
+        <p class="footer-address">
+          <a href="https://www.google.com/maps/search/?api=1&query=JAIN+Deemed-to-be-University+FET+Kanakapura+Road+Bengaluru+Karnataka+562112" target="_blank" rel="noopener noreferrer" class="map-link" title="Open Jain University location in Google Maps">
+            <span class="map-pin" aria-hidden="true">📍</span> JAIN (Deemed-to-be-University), FET<br>Bengaluru - Kanakapura Rd,<br>Bengaluru, Karnataka 562112
+          </a>
+        </p>
       </div>
       <div class="footer-col form-col">
-        <div class="contact-form">
-          <form id="contactForm">
-            <label for="contact-name" class="sr-only">Name</label>
-            <input type="text" id="contact-name" placeholder="Name" required class="form-input">
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <h3 class="contact-card-title">Send a Message</h3>
+            <p class="contact-card-subtitle">Connect with our core team directly.</p>
+          </div>
+          <form id="contactForm" class="contact-card-form">
+            <div class="form-group">
+              <label for="contact-name" class="sr-only">Name</label>
+              <input type="text" id="contact-name" placeholder="Name" required class="form-input">
+            </div>
             
-            <label for="contact-email" class="sr-only">Email</label>
-            <input type="email" id="contact-email" placeholder="Email" required class="form-input">
+            <div class="form-group">
+              <label for="contact-email" class="sr-only">Email</label>
+              <input type="email" id="contact-email" placeholder="Email" required class="form-input">
+            </div>
             
-            <label for="contact-message" class="sr-only">Message</label>
-            <textarea id="contact-message" placeholder="Message" required rows="5" class="form-input"></textarea>
+            <div class="form-group">
+              <label for="contact-message" class="sr-only">Message</label>
+              <textarea id="contact-message" placeholder="Message" required rows="4" class="form-input"></textarea>
+            </div>
             
-            <button type="submit" class="btn btn-primary btn-pill">SEND MESSAGE</button>
+            <button type="submit" class="btn btn-pill form-card-btn">SEND MESSAGE</button>
           </form>
           <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
         </div>
