@@ -6,7 +6,7 @@
   <title>ENIGMA — Student Tech Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono&family=Playfair+Display:ital,wght@1,600;1,700;1,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -174,33 +174,89 @@
     <section id="events" class="events section-padding">
       <h2 class="section-title">OUR <span class="accent italic">EVENTS.</span></h2>
       <div class="events-grid">
-        <div class="event-card">
-          <div class="event-bg event-bg-upcoming">
+        
+        <!-- Card 1: Wheel of Fortune -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/wheel-of-fortune.png" alt="Poster for The Wheel of Fortune event" class="event-poster-img" loading="lazy">
           </div>
-          <div class="event-content">
-            <span class="badge badge-upcoming">UPCOMING</span>
-            <h3 class="event-title">The Race for Roles</h3>
-            <p class="event-details">Auditions 2026<br><time datetime="2026-09-29">September 29, 2026</time></p>
+          <div class="event-status-pill pill-upcoming" aria-label="Upcoming event">
+            <span class="status-dot dot-upcoming" aria-hidden="true"></span>
+            <span class="status-text">UPCOMING</span>
           </div>
-        </div>
-        <div class="event-card">
-          <div class="event-bg event-bg-past">
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">EVENT</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date">UPCOMING</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-venue">VENUE: 002</span>
+            </div>
+            <h3 class="event-title"><span class="event-title-prefix">the</span> WHEEL OF FORTUNE</h3>
           </div>
-          <div class="event-content">
-            <span class="badge badge-past">PAST</span>
-            <h3 class="event-title">Jain's Got Latent</h3>
-            <p class="event-details"><time datetime="2026-04-28">April 28, 2026</time><br>Venue 002</p>
+        </article>
+
+        <!-- Card 2: Race for Roles -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/race-for-roles.png" alt="Poster for Race for Roles auditions" class="event-poster-img" loading="lazy">
           </div>
-        </div>
-        <div class="event-card">
-          <div class="event-bg event-bg-past">
+          <div class="event-status-pill pill-upcoming" aria-label="Upcoming event">
+            <span class="status-dot dot-upcoming" aria-hidden="true"></span>
+            <span class="status-text">UPCOMING</span>
           </div>
-          <div class="event-content">
-            <span class="badge badge-past">PAST</span>
-            <h3 class="event-title">Blind Date</h3>
-            <p class="event-details"><time datetime="2026-03-17">March 17, 2026</time><br>Venue 002</p>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">AUDITIONS 2026</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date">SEPTEMBER 29, 2026</span>
+            </div>
+            <h3 class="event-title"><span class="event-title-prefix">the</span> RACE FOR ROLES</h3>
           </div>
-        </div>
+        </article>
+
+        <!-- Card 3: Jain's Got Latent -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/jains-got-latent.png" alt="Poster for Jain's Got Latent event" class="event-poster-img" loading="lazy">
+          </div>
+          <div class="event-status-pill pill-past" aria-label="Past event">
+            <span class="status-dot dot-past" aria-hidden="true"></span>
+            <span class="status-text">PAST</span>
+          </div>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">EVENT</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date">APRIL 28, 2026</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-venue">VENUE: 002</span>
+            </div>
+            <h3 class="event-title">JAIN'S GOT LATENT</h3>
+          </div>
+        </article>
+
+        <!-- Card 4: Blind Date -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/blind-date.png" alt="Poster for Blind Date event" class="event-poster-img" loading="lazy">
+          </div>
+          <div class="event-status-pill pill-past" aria-label="Past event">
+            <span class="status-dot dot-past" aria-hidden="true"></span>
+            <span class="status-text">PAST</span>
+          </div>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">EVENT</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date">MARCH 17, 2026</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-venue">VENUE: 002</span>
+            </div>
+            <h3 class="event-title">BLIND DATE</h3>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -278,7 +334,7 @@
         <p class="footer-tagline">Student-led collective dedicated to technical rebellion and innovative deployment.</p>
         <div class="social-links">
           <a href="https://www.instagram.com/ju_enigma/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on Instagram" title="Visit ENIGMA on Instagram">Ig</a>
-          <a href="#" class="icon-btn" aria-label="ENIGMA on WhatsApp" title="WhatsApp">Wa</a>
+          <a href="https://chat.whatsapp.com/KUe221OJGsd63Hs5grwUMS" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on WhatsApp" title="WhatsApp">Wa</a>
           <a href="https://www.linkedin.com/company/enigma-club-ju/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on LinkedIn" title="Visit ENIGMA on LinkedIn">In</a>
         </div>
       </div>
