@@ -2,6 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
   const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+  const header = document.querySelector('.header');
+
+  // Dynamic blurry navbar on scroll
+  function updateHeaderOnScroll() {
+    if (!header) return;
+    if (window.scrollY > 15) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+  updateHeaderOnScroll();
+
 
   function getInertElements() {
     return [
@@ -76,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (href && href.startsWith('#')) {
       const targetEl = document.querySelector(href);
       if (targetEl) {
-        const headerOffset = 90;
+        const headerEl = document.querySelector('.header');
+        const headerOffset = headerEl ? headerEl.offsetHeight : 64;
         const targetY = targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
         window.scrollTo({
           top: Math.max(0, targetY),
@@ -281,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Check sections from top to bottom with comfortable header offset
       let currentSectionId = 'home';
-      const offset = 180;
+      const offset = 100;
 
       for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
