@@ -1,0 +1,22 @@
+{
+  "name": "enigma-site",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "verify": "node ./scripts/verify.mjs",
+    "measure": "node ./perf/measure.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "html-minifier-terser": "^7.2.0",
+    "lighthouse": "^12.3.0",
+    "node-html-parser": "^7.0.1",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.50.1",
+    "pngjs": "^7.0.0",
+    "serve": "^14.2.4",
+    "sharp": "^0.33.5",
+    "ssim.js": "^4.0.1"
+  }
+}
