@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import esbuild from 'esbuild';
 import { parse } from 'node-html-parser';
 import { processImages } from './images.mjs';
 
@@ -113,8 +114,26 @@ async function build() {
     img.replaceWith(pictureNode);
   }
 
+  // 5. Minify CSS with esbuild (no browser targets, no prefix changes) and INLINE into <head>
+  const srcCssPath = path.join(srcDir, 'style.css');
+  const cssContent = fs.readFileSync(srcCssPath, 'utf8');
+  const minifiedCss = await esbuild.transform(cssContent, {
+    loader: 'css',
+    minify: true,
+  });
+
+  const linkCss = root.querySelector('link[rel="stylesheet"][href="style.css"]');
+  if (linkCss) {
+    const styleNode = parse(`<style>${minifiedCss.code}</style>`);
+    linkCss.replaceWith(styleNode);
+    console.log(`  Inlined minified critical CSS (${minifiedCss.code.length} bytes) into <head>`);
+  }
+
+  // Also write minified CSS to dist/style.css
+  fs.writeFileSync(path.join(distDir, 'style.css'), minifiedCss.code, 'utf8');
+
   fs.writeFileSync(distHtmlPath, root.toString(), 'utf8');
-  console.log('[build] Successfully transformed dist/index.html with responsive <picture> elements.');
+  console.log('[build] Successfully transformed dist/index.html with inlined CSS & responsive pictures.');
   console.log('[build] Build completed successfully.');
 }
 

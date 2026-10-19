@@ -216,27 +216,8 @@ ul {
   font-size: 1rem;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   border: none;
-}
-
-.btn-primary {
-  background-color: #7c3aed;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background-color: #6d28d9;
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: #fff;
-  border: 1px solid var(--text-muted);
-}
-
-.btn-outline:hover {
-  border-color: var(--text-color);
 }
 
 .btn-pill {
@@ -252,15 +233,13 @@ ul {
   left: 0;
   width: 100%;
   background-color: transparent;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
   padding: 0.95rem 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 100;
   border-bottom: 1px solid transparent;
-  transition: background-color 0.25s ease, backdrop-filter 0.25s ease, -webkit-backdrop-filter 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .header.scrolled {
@@ -291,10 +270,6 @@ ul {
   border-radius: 6px;
   display: block;
   mix-blend-mode: screen;
-}
-
-.logo-icon {
-  display: none;
 }
 
 .nav {
@@ -367,8 +342,7 @@ ul {
   font-weight: 500;
   text-transform: none;
   cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(8px);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .nav-cta:hover {
@@ -485,7 +459,7 @@ ul {
   text-transform: none;
   letter-spacing: 0.2px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
 }
 
@@ -508,7 +482,7 @@ ul {
   text-transform: none;
   letter-spacing: 0.2px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   backdrop-filter: blur(8px);
 }
 
@@ -602,7 +576,6 @@ ul {
   border: 1.5px solid rgba(168, 85, 247, 0.8);
   border-radius: 9999px;
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.35), inset 0 0 12px rgba(139, 92, 246, 0.2);
-  backdrop-filter: blur(10px);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -703,8 +676,7 @@ ul {
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(139, 92, 246, 0.05);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  backdrop-filter: blur(10px);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .flowchart-card:hover {
@@ -1056,11 +1028,6 @@ ul {
   font-style: normal;
 }
 
-.team-links {
-  display: flex;
-  gap: 0.8rem;
-}
-
 .icon-btn {
   width: 36px;
   height: 36px;
@@ -1072,7 +1039,7 @@ ul {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   font-family: var(--font-heading);
   font-size: 0.9rem;
 }
@@ -1080,35 +1047,6 @@ ul {
 .icon-btn:hover {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
-}
-
-/* Contact Section */
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.info-item {
-  font-size: 1.1rem;
-}
-
-.info-item strong {
-  font-family: var(--font-heading);
-  color: var(--text-color);
-  text-transform: uppercase;
-  margin-bottom: 0.3rem;
-  display: inline-block;
-}
-
-.info-item {
-  color: var(--text-muted);
 }
 
 /* Contact Card Design */
@@ -1170,7 +1108,7 @@ ul {
   color: var(--text-color);
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  transition: all 0.25s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .contact-card .form-input::placeholder {
@@ -1193,7 +1131,7 @@ ul {
   font-size: 0.9rem;
   letter-spacing: 1px;
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .form-card-btn:hover {
@@ -1276,7 +1214,7 @@ ul {
   display: inline-block;
   color: var(--text-muted);
   line-height: 1.6;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .map-link:hover,
@@ -1284,11 +1222,6 @@ ul {
   color: #c084fc !important;
   text-decoration: none !important;
   transform: translateX(3px);
-}
-
-.map-pin {
-  margin-right: 4px;
-  font-size: 0.95rem;
 }
 
 .social-links {
@@ -1330,10 +1263,6 @@ ul {
     border-left: none;
     border-top: 1px solid var(--accent-color);
     padding-top: 2rem;
-  }
-  
-  .contact-layout {
-    grid-template-columns: 1fr;
   }
   
   .footer-layout {
