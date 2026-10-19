@@ -113,3 +113,40 @@ During `npm run build`, `src/style.css` is minified with `esbuild` (without brow
 | **`03-images`** | 958 ms | 697 ms | 29 ms | 27 ms | 27.2 KiB (153 ms wasted) |
 | **`04-css` (Inlined & Cleaned)** | **916 ms** | **687 ms** | **28 ms** | **19 ms** | **0 B (0 ms - eliminated)** |
 | **Total Reduction vs Baseline** | **-52.4% (-1,008 ms)** | **-51.7% (-734 ms)** | **-28.2% (-11 ms)** | **-67.2% (-39 ms)** | **-100% (-154 ms)** |
+
+---
+
+## 5. Experiment: `content-visibility: auto` Evaluation
+
+### Implementation Details
+`content-visibility: auto` was applied in conjunction with breakpoint-accurate `contain-intrinsic-size` to `#about`, `#events`, `#team`, and `footer` using the exact measured rendered dimensions:
+- `#about`: `auto 723px` (desktop), `auto 861px` (1024px), `auto 848px` (768px), `auto 1321px` (mobile)
+- `#events`: `auto 632px` (desktop), `auto 1503px` (1024px), `auto 1152px` (768px), `auto 2272px` (mobile)
+- `#team`: `auto 1076px` (desktop), `auto 2285px` (1024px), `auto 1937px` (768px), `auto 3335px` (mobile)
+- `footer`: `auto 674px` (desktop), `auto 696px` (1024px), `auto 1475px` (768px), `auto 1475px` (mobile)
+
+### Browser Support
+- **Minimum Versions**: Chrome 85+ (Aug 2020), Edge 85+ (Aug 2020), Firefox 125+ (Apr 2024), Safari 18+ (Sep 2024).
+- **Source**: [Can I Use: content-visibility](https://caniuse.com/content-visibility) (~88.5% global support).
+- **Fallback Behaviour**: Browsers without `content-visibility` support treat the declaration as an unknown property and render elements normally without adverse effects.
+
+### Experimental Outcome: Evaluated, No Gain (Reverted)
+
+| Metric / Check | `04-css` (Inlined) | `05-content-visibility` | Delta / Status |
+| :--- | :---: | :---: | :--- |
+| **Performance Score** | 90 (Median) | 98 (Median) | +8 pts |
+| **FCP** | 1863 ms | 1450 ms | -413 ms |
+| **LCP** | 2513 ms | 1760 ms | -753 ms |
+| **TBT** | 204 ms | 144 ms | -60 ms |
+| **CLS** | 0.0000 | 0.0000 | Identical (<= 0.01) |
+| **Verification (Visual Diff)** | **PASS** (0.211% desk, 0.424% mob) | **FAIL** (1.447% desk, 2.880% mob) | **Severe Regression** (> 0.5% limit) |
+| **Image Area Differences** | **PASS** (2.897% desk, 1.124% mob) | **FAIL** (38.238% desk, 65.493% mob) | **Severe Regression** (> 3% limit) |
+| **Anchor Link Jumps (`#contact`)** | Landed exact (64px offset) | Landed incorrect (226px offset) | Target offset displaced by ~162px |
+| **Scroll-Spy & Sliding Indicator** | Accurate | Inconsistent on fast jump | Displaced during scroll reflows |
+
+**Decision**: **Evaluated, no gain — REVERTED**.
+While simulated synthetic throttling metrics showed initial rendering latency drops, `content-visibility: auto` caused severe functional regressions:
+1. When navigating back to top for full-page verification captures, off-screen sections remained in skipped layout state, causing extensive visual diff failures (up to 65.5% in image areas and 2.88% outside images, failing `npm run verify`).
+2. Anchor navigation jumps (especially to `#contact`) landed ~162px off target because the intermediate unrendered sections reflowed dynamically as the viewport traveled past them.
+Per prompt instructions, the experiment was reverted, keeping the verified, robust `04-css` baseline.
+

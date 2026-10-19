@@ -442,3 +442,72 @@ UNKNOWN.
 
 ---
 
+## Run: `05-content-visibility` (dist) — 2026-10-19
+
+### MOBILE Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 96 | 98 | 98 | **98** | 96 - 98 |
+| **FCP** | 1523 ms | 1443 ms | 1450 ms | **1450 ms** | 1443 ms - 1523 ms |
+| **LCP** | 1845 ms | 1760 ms | 1750 ms | **1760 ms** | 1750 ms - 1845 ms |
+| **TBT** | 209 ms | 130 ms | 144 ms | **144 ms** | 130 ms - 209 ms |
+| **Speed Index** | 2519 ms | 1443 ms | 1450 ms | **1450 ms** | 1443 ms - 2519 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0000
+- **Total Byte Weight**: 127.0 KiB
+- **Network Requests**: 7
+- **DOM Elements**: 341
+- **Unused CSS**: 11.6 KiB
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 52.1 KiB | 0 B | 11.7 KiB | 61.6 KiB | 1.5 KiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 798 ms
+- **Style & Layout**: 584 ms
+- **Script Evaluation**: 26 ms
+- **Rendering**: 15 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > p.hero-desc`
+- **LCP Snippet**: `<p class="hero-desc">`
+- **LCP Node Label**: A student-led collective building, experimenting, and deploying ideas that chal…
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 26% | 454 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 74% | 1296 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 2
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 194 ms | 1556 ms | `http://localhost:65048/script.js` |
+| 62 ms | 977 ms | `http://localhost:65048/` |
+
+#### Render-Blocking Resources
+
+*No render-blocking resources identified*
+
+#### Image Delivery Insights
+
+*No major image delivery optimizations flagged*
+
+---
+
