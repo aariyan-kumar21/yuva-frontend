@@ -37,43 +37,49 @@ async function launchBrowser() {
 
 async function scrollPage(page) {
   await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let totalHeight = 0;
-      const distance = 300;
-      const timer = setInterval(() => {
-        const scrollHeight = document.body.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-        if (totalHeight >= scrollHeight) {
-          clearInterval(timer);
-          window.scrollTo(0, 0);
-          resolve();
-        }
-      }, 40);
-    });
+    const scrollStep = 300;
+    const scrollDelay = 40;
+    while (window.scrollY + window.innerHeight < document.body.scrollHeight) {
+      window.scrollBy(0, scrollStep);
+      await new Promise((r) => setTimeout(r, scrollDelay));
+    }
+  });
+
+  await page.evaluate(async () => {
+    for (const img of Array.from(document.images)) {
+      if (!img.complete || img.naturalWidth === 0) {
+        img.scrollIntoView();
+        await new Promise((r) => setTimeout(r, 60));
+      }
+    }
   });
 
   await page.waitForFunction(() => {
-    const images = Array.from(document.images);
-    return images.every((img) => img.complete);
-  });
+    return Array.from(document.images).every((img) => img.complete && img.naturalWidth > 0);
+  }, { timeout: 10000 }).catch(() => {});
 
-  await page.evaluate(() => (document.fonts ? document.fonts.ready : Promise.resolve()));
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(300);
+  await page.evaluate(() => (document.fonts ? document.fonts.ready : Promise.resolve()));
+  await page.waitForTimeout(200);
 }
 
 async function getImageBoundingBoxes(page) {
   return await page.evaluate(() => {
-    const images = Array.from(document.querySelectorAll('img, svg, picture'));
-    return images.map((img) => {
-      const rect = img.getBoundingClientRect();
-      return {
-        left: rect.left + window.scrollX,
-        top: rect.top + window.scrollY,
-        right: rect.right + window.scrollX,
-        bottom: rect.bottom + window.scrollY,
-      };
-    });
+    const images = Array.from(document.querySelectorAll('img, svg'));
+    return images
+      .map((img) => {
+        const rect = img.getBoundingClientRect();
+        return {
+          left: rect.left + window.scrollX,
+          top: rect.top + window.scrollY,
+          right: rect.right + window.scrollX,
+          bottom: rect.bottom + window.scrollY,
+          width: rect.width,
+          height: rect.height,
+        };
+      })
+      .filter((b) => b.width > 0 && b.height > 0);
   });
 }
 
@@ -476,7 +482,7 @@ async function run() {
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
           const inImage = combinedBoxes.some(
-            (b) => x >= b.left && x <= b.right && y >= b.top && y <= b.bottom
+            (b) => x >= Math.floor(b.left) - 1 && x <= Math.ceil(b.right) + 1 && y >= Math.floor(b.top) - 1 && y <= Math.ceil(b.bottom) + 1
           );
           const idx = (y * width + x) * 4;
           // Check if pixelmatch marked diff (red pixel [255, 0, 0])

@@ -300,3 +300,75 @@ UNKNOWN.
 
 ---
 
+## Run: `03-images` (dist) — 2026-10-19
+
+### MOBILE Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 93 | 97 | 98 | **97** | 93 - 98 |
+| **FCP** | 1657 ms | 1658 ms | 1655 ms | **1657 ms** | 1655 ms - 1658 ms |
+| **LCP** | 2334 ms | 2335 ms | 2330 ms | **2334 ms** | 2330 ms - 2335 ms |
+| **TBT** | 172 ms | 87 ms | 48 ms | **87 ms** | 48 ms - 172 ms |
+| **Speed Index** | 4027 ms | 1658 ms | 1655 ms | **1658 ms** | 1655 ms - 4027 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0000
+- **Total Byte Weight**: 287.1 KiB
+- **Network Requests**: 14
+- **DOM Elements**: 341
+- **Unused CSS**: 0 B
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 30.9 KiB | 27.2 KiB | 11.7 KiB | 131.3 KiB | 85.9 KiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 958 ms
+- **Style & Layout**: 697 ms
+- **Script Evaluation**: 29 ms
+- **Rendering**: 27 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > p.hero-desc`
+- **LCP Snippet**: `<p class="hero-desc">`
+- **LCP Node Label**: A student-led collective building, experimenting, and deploying ideas that chal…
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 19% | 453 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 81% | 1882 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 3
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 264 ms | 1508 ms | `http://localhost:56090/script.js` |
+| 73 ms | 1772 ms | `http://localhost:56090/script.js` |
+| 57 ms | 753 ms | `Unattributable` |
+
+#### Render-Blocking Resources
+
+| Resource URL | Total Bytes | Wasted Potential |
+| :--- | :--- | :--- |
+| `http://localhost:56090/style.css` | 27.2 KiB | 153 ms |
+
+#### Image Delivery Insights
+
+*No major image delivery optimizations flagged*
+
+---
+

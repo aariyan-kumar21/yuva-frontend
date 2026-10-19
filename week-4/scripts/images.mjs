@@ -18,7 +18,7 @@ const imagesDistDir = path.join(distDir, 'images');
 
 fs.mkdirSync(imagesDistDir, { recursive: true });
 
-async function findOptimalQuality(srcPath, maxDisplayWidth, format, minQ, maxQ, step = 2) {
+async function findOptimalQuality(srcPath, maxDisplayWidth, format, minQ, maxQ) {
   const refBuffer = await sharp(srcPath)
     .rotate()
     .ensureAlpha()
@@ -26,10 +26,7 @@ async function findOptimalQuality(srcPath, maxDisplayWidth, format, minQ, maxQ, 
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  let bestQ = maxQ;
-  let bestSSIM = 0;
-
-  for (let q = minQ; q <= maxQ; q += step) {
+  const testQuality = async (q) => {
     let instance = sharp(srcPath).rotate();
     let encodedBuf;
     if (format === 'avif') {
@@ -49,16 +46,31 @@ async function findOptimalQuality(srcPath, maxDisplayWidth, format, minQ, maxQ, 
       { data: decoded.data, width: decoded.info.width, height: decoded.info.height }
     );
 
-    const mssim = ssimResult.mssim || 0;
+    return ssimResult.mssim || 0;
+  };
+
+  // Binary search for lowest quality satisfying SSIM >= 0.98
+  let low = minQ;
+  let high = maxQ;
+  let bestQ = maxQ;
+  let bestSSIM = 0;
+
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const mssim = await testQuality(mid);
     if (mssim >= 0.98) {
-      bestQ = q;
+      bestQ = mid;
       bestSSIM = mssim;
-      break;
+      high = mid - 1; // Try lower quality to find minimal satisfying quality
+    } else {
+      low = mid + 1;
     }
-    if (mssim > bestSSIM) {
-      bestSSIM = mssim;
-      bestQ = q;
-    }
+  }
+
+  // If no quality reached 0.98, fall back to maxQ evaluation
+  if (bestSSIM === 0) {
+    bestQ = maxQ;
+    bestSSIM = await testQuality(maxQ);
   }
 
   return { quality: bestQ, ssim: bestSSIM };
@@ -107,23 +119,22 @@ export async function processImages() {
     let maxDisplayWidth = 448;
 
     if (relSrc.includes('enigma-logo')) {
-      targetWidths = [72, 144];
+      // Logo: widths 72 and 144
+      targetWidths = [72, 144].filter((w) => w <= meta.width);
       maxDisplayWidth = 72;
       sizes = '34px';
     } else if (relSrc.includes('events')) {
-      const candidates = [320, 480, meta.width];
-      targetWidths = Array.from(new Set(candidates.filter((w) => w <= meta.width))).sort((a, b) => a - b);
+      // Posters: widths 320, 480 and the source width
+      const candidates = [320, 480, meta.width].filter((w) => w <= meta.width);
+      targetWidths = Array.from(new Set(candidates)).sort((a, b) => a - b);
       maxDisplayWidth = 448;
-      sizes = '(min-width: 1101px) 306px, (min-width: 601px) 448px, 349px';
+      sizes = '(min-width: 1101px) 306px, (min-width: 1024px) 448px, (min-width: 768px) 333px, 349px';
     } else if (relSrc.includes('team')) {
-      const candidates = [320, 480, 640];
-      const filtered = candidates.filter((w) => w <= meta.width);
-      if (filtered.length === 0 || !filtered.includes(meta.width)) {
-        filtered.push(meta.width);
-      }
-      targetWidths = Array.from(new Set(filtered)).sort((a, b) => a - b);
+      // Team photos: widths 320, 480 and 640 (capped at the source width)
+      const candidates = [320, 480, 640].map((w) => Math.min(w, meta.width));
+      targetWidths = Array.from(new Set(candidates)).sort((a, b) => a - b);
       maxDisplayWidth = 408;
-      sizes = '(min-width: 1201px) 265px, (min-width: 641px) 408px, 310px';
+      sizes = '(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px';
     } else {
       targetWidths = [320, meta.width];
       maxDisplayWidth = Math.min(meta.width, 600);
@@ -138,8 +149,8 @@ export async function processImages() {
     const avgColor = `rgb(${avgRgb[0]}, ${avgRgb[1]}, ${avgRgb[2]})`;
 
     // SSIM quality search
-    const avifResult = await findOptimalQuality(srcPath, maxDisplayWidth, 'avif', 40, 70, 2);
-    const webpResult = await findOptimalQuality(srcPath, maxDisplayWidth, 'webp', 60, 85, 2);
+    const avifResult = await findOptimalQuality(srcPath, maxDisplayWidth, 'avif', 40, 70);
+    const webpResult = await findOptimalQuality(srcPath, maxDisplayWidth, 'webp', 60, 85);
 
     console.log(`    AVIF chosen q=${avifResult.quality} (SSIM: ${avifResult.ssim.toFixed(4)})`);
     console.log(`    WebP chosen q=${webpResult.quality} (SSIM: ${webpResult.ssim.toFixed(4)})`);
@@ -150,7 +161,7 @@ export async function processImages() {
     for (const w of targetWidths) {
       const targetHeight = Math.round(meta.height * (w / meta.width));
 
-      // Generate AVIF
+      // Generate AVIF (auto-orient, strip metadata)
       const avifBuf = await sharp(srcPath)
         .rotate()
         .resize({ width: w, withoutEnlargement: true })
@@ -169,7 +180,7 @@ export async function processImages() {
         bytes: avifBuf.length,
       });
 
-      // Generate WebP
+      // Generate WebP (auto-orient, strip metadata)
       const webpBuf = await sharp(srcPath)
         .rotate()
         .resize({ width: w, withoutEnlargement: true })
@@ -249,7 +260,7 @@ function generateImagesMarkdown(imageReports) {
   md += `### Quality Selection Rationale (SSIM >= 0.98)\n`;
   md += `- Automated per-image parameter search evaluated Structural Similarity Index Measure (SSIM) against the uncompressed original resized to maximum display viewport size.\n`;
   md += `- The lowest quality setting satisfying SSIM >= 0.98 was selected, ensuring perceptual transparency without wasting bytes.\n`;
-  md += `- Posters achieved threshold at AVIF q=40 and WebP q=60. Team portraits required higher quality (q=44-68 for AVIF, q=64-84 for WebP) to preserve fine facial details.\n\n`;
+  md += `- Posters achieved threshold at AVIF q=40 and WebP q=60. Team portraits required slightly higher quality to preserve fine facial details.\n\n`;
 
   md += `## 2. Per-Image Variants and Compression Results\n\n`;
 
@@ -260,8 +271,9 @@ function generateImagesMarkdown(imageReports) {
   for (const report of imageReports) {
     totalOrigBytes += report.origBytes;
 
-    // Pick typical mobile variant (e.g. 320w or 480w)
+    // Mobile variant: 320w or first variant
     const mobileAvif = report.avifVariants.find((v) => v.width === 320) || report.avifVariants[0];
+    // Desktop variant: 480w or last variant
     const desktopAvif = report.avifVariants.find((v) => v.width === 480) || report.avifVariants[report.avifVariants.length - 1];
 
     totalMobileAvifBytes += mobileAvif.bytes;

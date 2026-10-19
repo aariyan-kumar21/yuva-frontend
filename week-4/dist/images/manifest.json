@@ -1,0 +1,650 @@
+{
+  "assets/enigma-logo.jpg": {
+    "originalBytes": 158533,
+    "originalWidth": 1024,
+    "originalHeight": 1024,
+    "avgColor": "rgb(54, 33, 39)",
+    "sizes": "34px",
+    "avifQuality": 40,
+    "avifSSIM": 0.9991908687382661,
+    "webpQuality": 60,
+    "webpSSIM": 0.9930430580630814,
+    "avifVariants": [
+      {
+        "width": 72,
+        "height": 72,
+        "filename": "images/enigma-logo-72.f95eaeb0.avif",
+        "bytes": 1296
+      },
+      {
+        "width": 144,
+        "height": 144,
+        "filename": "images/enigma-logo-144.b4a426ad.avif",
+        "bytes": 2668
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 72,
+        "height": 72,
+        "filename": "images/enigma-logo-72.89d81341.webp",
+        "bytes": 1480
+      },
+      {
+        "width": 144,
+        "height": 144,
+        "filename": "images/enigma-logo-144.eced70f6.webp",
+        "bytes": 3564
+      }
+    ],
+    "defaultWebp": {
+      "width": 144,
+      "height": 144,
+      "filename": "images/enigma-logo-144.eced70f6.webp",
+      "bytes": 3564
+    }
+  },
+  "assets/events/wheel-of-fortune.png": {
+    "originalBytes": 941888,
+    "originalWidth": 606,
+    "originalHeight": 806,
+    "avgColor": "rgb(77, 65, 95)",
+    "sizes": "(min-width: 1101px) 306px, (min-width: 1024px) 448px, (min-width: 768px) 333px, 349px",
+    "avifQuality": 40,
+    "avifSSIM": 0.9899783444998649,
+    "webpQuality": 60,
+    "webpSSIM": 0.990203337447897,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 426,
+        "filename": "images/wheel-of-fortune-320.6d6f5eb7.avif",
+        "bytes": 14936
+      },
+      {
+        "width": 480,
+        "height": 638,
+        "filename": "images/wheel-of-fortune-480.77394e71.avif",
+        "bytes": 24905
+      },
+      {
+        "width": 606,
+        "height": 806,
+        "filename": "images/wheel-of-fortune-606.4e84efd9.avif",
+        "bytes": 33674
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 426,
+        "filename": "images/wheel-of-fortune-320.6327b95f.webp",
+        "bytes": 21286
+      },
+      {
+        "width": 480,
+        "height": 638,
+        "filename": "images/wheel-of-fortune-480.91e74025.webp",
+        "bytes": 37604
+      },
+      {
+        "width": 606,
+        "height": 806,
+        "filename": "images/wheel-of-fortune-606.d0331f21.webp",
+        "bytes": 51802
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 638,
+      "filename": "images/wheel-of-fortune-480.91e74025.webp",
+      "bytes": 37604
+    }
+  },
+  "assets/events/race-for-roles.png": {
+    "originalBytes": 624678,
+    "originalWidth": 647,
+    "originalHeight": 807,
+    "avgColor": "rgb(55, 51, 64)",
+    "sizes": "(min-width: 1101px) 306px, (min-width: 1024px) 448px, (min-width: 768px) 333px, 349px",
+    "avifQuality": 40,
+    "avifSSIM": 0.9948815349076208,
+    "webpQuality": 60,
+    "webpSSIM": 0.9938725159799061,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 399,
+        "filename": "images/race-for-roles-320.31089bdc.avif",
+        "bytes": 9074
+      },
+      {
+        "width": 480,
+        "height": 599,
+        "filename": "images/race-for-roles-480.a997e44b.avif",
+        "bytes": 14058
+      },
+      {
+        "width": 647,
+        "height": 807,
+        "filename": "images/race-for-roles-647.8b40b8c8.avif",
+        "bytes": 18841
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 399,
+        "filename": "images/race-for-roles-320.0c4cd03e.webp",
+        "bytes": 12866
+      },
+      {
+        "width": 480,
+        "height": 599,
+        "filename": "images/race-for-roles-480.8379b448.webp",
+        "bytes": 22038
+      },
+      {
+        "width": 647,
+        "height": 807,
+        "filename": "images/race-for-roles-647.a2e661ff.webp",
+        "bytes": 31746
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 599,
+      "filename": "images/race-for-roles-480.8379b448.webp",
+      "bytes": 22038
+    }
+  },
+  "assets/events/jains-got-latent.png": {
+    "originalBytes": 757091,
+    "originalWidth": 605,
+    "originalHeight": 803,
+    "avgColor": "rgb(57, 47, 49)",
+    "sizes": "(min-width: 1101px) 306px, (min-width: 1024px) 448px, (min-width: 768px) 333px, 349px",
+    "avifQuality": 40,
+    "avifSSIM": 0.9855182019002711,
+    "webpQuality": 60,
+    "webpSSIM": 0.9852416104725201,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 425,
+        "filename": "images/jains-got-latent-320.f680e588.avif",
+        "bytes": 14508
+      },
+      {
+        "width": 480,
+        "height": 637,
+        "filename": "images/jains-got-latent-480.2b4f00dd.avif",
+        "bytes": 24506
+      },
+      {
+        "width": 605,
+        "height": 803,
+        "filename": "images/jains-got-latent-605.f73e0bbb.avif",
+        "bytes": 33300
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 425,
+        "filename": "images/jains-got-latent-320.5abb2b37.webp",
+        "bytes": 19708
+      },
+      {
+        "width": 480,
+        "height": 637,
+        "filename": "images/jains-got-latent-480.3e25e15e.webp",
+        "bytes": 34984
+      },
+      {
+        "width": 605,
+        "height": 803,
+        "filename": "images/jains-got-latent-605.64896eb5.webp",
+        "bytes": 48558
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 637,
+      "filename": "images/jains-got-latent-480.3e25e15e.webp",
+      "bytes": 34984
+    }
+  },
+  "assets/events/blind-date.png": {
+    "originalBytes": 740005,
+    "originalWidth": 608,
+    "originalHeight": 807,
+    "avgColor": "rgb(136, 48, 37)",
+    "sizes": "(min-width: 1101px) 306px, (min-width: 1024px) 448px, (min-width: 768px) 333px, 349px",
+    "avifQuality": 40,
+    "avifSSIM": 0.9909036922811528,
+    "webpQuality": 60,
+    "webpSSIM": 0.9885313061990405,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 425,
+        "filename": "images/blind-date-320.d6fddbc2.avif",
+        "bytes": 12469
+      },
+      {
+        "width": 480,
+        "height": 637,
+        "filename": "images/blind-date-480.e31c4f37.avif",
+        "bytes": 20565
+      },
+      {
+        "width": 608,
+        "height": 807,
+        "filename": "images/blind-date-608.9111e1af.avif",
+        "bytes": 26834
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 425,
+        "filename": "images/blind-date-320.17455f5d.webp",
+        "bytes": 16928
+      },
+      {
+        "width": 480,
+        "height": 637,
+        "filename": "images/blind-date-480.266fd6d7.webp",
+        "bytes": 28996
+      },
+      {
+        "width": 608,
+        "height": 807,
+        "filename": "images/blind-date-608.62f43494.webp",
+        "bytes": 38620
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 637,
+      "filename": "images/blind-date-480.266fd6d7.webp",
+      "bytes": 28996
+    }
+  },
+  "assets/team/adrija.jpg": {
+    "originalBytes": 75508,
+    "originalWidth": 536,
+    "originalHeight": 440,
+    "avgColor": "rgb(150, 122, 110)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 68,
+    "avifSSIM": 0.9804300610911215,
+    "webpQuality": 85,
+    "webpSSIM": 0.9650832236589763,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 263,
+        "filename": "images/adrija-320.f671eb39.avif",
+        "bytes": 17141
+      },
+      {
+        "width": 480,
+        "height": 394,
+        "filename": "images/adrija-480.b8ff80a0.avif",
+        "bytes": 36815
+      },
+      {
+        "width": 536,
+        "height": 440,
+        "filename": "images/adrija-536.76c91665.avif",
+        "bytes": 46834
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 263,
+        "filename": "images/adrija-320.4ede8967.webp",
+        "bytes": 19842
+      },
+      {
+        "width": 480,
+        "height": 394,
+        "filename": "images/adrija-480.2c089f1e.webp",
+        "bytes": 43606
+      },
+      {
+        "width": 536,
+        "height": 440,
+        "filename": "images/adrija-536.bfd8ec72.webp",
+        "bytes": 56576
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 394,
+      "filename": "images/adrija-480.2c089f1e.webp",
+      "bytes": 43606
+    }
+  },
+  "assets/team/srinjay.jpg": {
+    "originalBytes": 141754,
+    "originalWidth": 1024,
+    "originalHeight": 845,
+    "avgColor": "rgb(50, 45, 34)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 47,
+    "avifSSIM": 0.9805318594611598,
+    "webpQuality": 75,
+    "webpSSIM": 0.9800807988493764,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 264,
+        "filename": "images/srinjay-320.d6da908c.avif",
+        "bytes": 3996
+      },
+      {
+        "width": 480,
+        "height": 396,
+        "filename": "images/srinjay-480.a8f4d76d.avif",
+        "bytes": 6437
+      },
+      {
+        "width": 640,
+        "height": 528,
+        "filename": "images/srinjay-640.e410a008.avif",
+        "bytes": 9070
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 264,
+        "filename": "images/srinjay-320.25e07d53.webp",
+        "bytes": 6034
+      },
+      {
+        "width": 480,
+        "height": 396,
+        "filename": "images/srinjay-480.4af51868.webp",
+        "bytes": 10554
+      },
+      {
+        "width": 640,
+        "height": 528,
+        "filename": "images/srinjay-640.8dd9c799.webp",
+        "bytes": 16000
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 396,
+      "filename": "images/srinjay-480.4af51868.webp",
+      "bytes": 10554
+    }
+  },
+  "assets/team/hriddhima.jpg": {
+    "originalBytes": 216300,
+    "originalWidth": 994,
+    "originalHeight": 820,
+    "avgColor": "rgb(102, 111, 93)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 44,
+    "avifSSIM": 0.9814477720569584,
+    "webpQuality": 77,
+    "webpSSIM": 0.9802025315883909,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 264,
+        "filename": "images/hriddhima-320.f9b52d1c.avif",
+        "bytes": 9575
+      },
+      {
+        "width": 480,
+        "height": 396,
+        "filename": "images/hriddhima-480.16eb58ea.avif",
+        "bytes": 17447
+      },
+      {
+        "width": 640,
+        "height": 528,
+        "filename": "images/hriddhima-640.fbd1d9b6.avif",
+        "bytes": 26858
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 264,
+        "filename": "images/hriddhima-320.d999b3fd.webp",
+        "bytes": 15176
+      },
+      {
+        "width": 480,
+        "height": 396,
+        "filename": "images/hriddhima-480.457a382c.webp",
+        "bytes": 30292
+      },
+      {
+        "width": 640,
+        "height": 528,
+        "filename": "images/hriddhima-640.4c64f3e7.webp",
+        "bytes": 48294
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 396,
+      "filename": "images/hriddhima-480.457a382c.webp",
+      "bytes": 30292
+    }
+  },
+  "assets/team/anchita.jpg": {
+    "originalBytes": 51225,
+    "originalWidth": 473,
+    "originalHeight": 385,
+    "avgColor": "rgb(124, 122, 129)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 52,
+    "avifSSIM": 0.9807257310603693,
+    "webpQuality": 83,
+    "webpSSIM": 0.9808675249881831,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 260,
+        "filename": "images/anchita-320.8087e616.avif",
+        "bytes": 9240
+      },
+      {
+        "width": 473,
+        "height": 385,
+        "filename": "images/anchita-473.e05de871.avif",
+        "bytes": 15476
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 260,
+        "filename": "images/anchita-320.0e72e3a4.webp",
+        "bytes": 14540
+      },
+      {
+        "width": 473,
+        "height": 385,
+        "filename": "images/anchita-473.2787ad6a.webp",
+        "bytes": 25886
+      }
+    ],
+    "defaultWebp": {
+      "width": 473,
+      "height": 385,
+      "filename": "images/anchita-473.2787ad6a.webp",
+      "bytes": 25886
+    }
+  },
+  "assets/team/arpita.jpg": {
+    "originalBytes": 83491,
+    "originalWidth": 907,
+    "originalHeight": 820,
+    "avgColor": "rgb(154, 128, 118)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 47,
+    "avifSSIM": 0.9807796103291634,
+    "webpQuality": 63,
+    "webpSSIM": 0.9802964692815601,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 289,
+        "filename": "images/arpita-320.b5249698.avif",
+        "bytes": 5043
+      },
+      {
+        "width": 480,
+        "height": 434,
+        "filename": "images/arpita-480.2ec39234.avif",
+        "bytes": 7978
+      },
+      {
+        "width": 640,
+        "height": 579,
+        "filename": "images/arpita-640.b27fbfb8.avif",
+        "bytes": 11218
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 289,
+        "filename": "images/arpita-320.09d30ac8.webp",
+        "bytes": 6804
+      },
+      {
+        "width": 480,
+        "height": 434,
+        "filename": "images/arpita-480.98ccc324.webp",
+        "bytes": 11554
+      },
+      {
+        "width": 640,
+        "height": 579,
+        "filename": "images/arpita-640.cb8588f9.webp",
+        "bytes": 16822
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 434,
+      "filename": "images/arpita-480.98ccc324.webp",
+      "bytes": 11554
+    }
+  },
+  "assets/team/disha.jpg": {
+    "originalBytes": 116494,
+    "originalWidth": 822,
+    "originalHeight": 860,
+    "avgColor": "rgb(134, 112, 91)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 40,
+    "avifSSIM": 0.9945189198831373,
+    "webpQuality": 60,
+    "webpSSIM": 0.9954624967494737,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 335,
+        "filename": "images/disha-320.37da6464.avif",
+        "bytes": 9588
+      },
+      {
+        "width": 480,
+        "height": 502,
+        "filename": "images/disha-480.60a313ce.avif",
+        "bytes": 14390
+      },
+      {
+        "width": 640,
+        "height": 670,
+        "filename": "images/disha-640.16f131d3.avif",
+        "bytes": 19211
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 335,
+        "filename": "images/disha-320.a84aa456.webp",
+        "bytes": 14536
+      },
+      {
+        "width": 480,
+        "height": 502,
+        "filename": "images/disha-480.23d38c0b.webp",
+        "bytes": 23772
+      },
+      {
+        "width": 640,
+        "height": 670,
+        "filename": "images/disha-640.a5efef84.webp",
+        "bytes": 32322
+      }
+    ],
+    "defaultWebp": {
+      "width": 480,
+      "height": 502,
+      "filename": "images/disha-480.23d38c0b.webp",
+      "bytes": 23772
+    }
+  },
+  "assets/team/akshat.jpg": {
+    "originalBytes": 25803,
+    "originalWidth": 380,
+    "originalHeight": 315,
+    "avgColor": "rgb(196, 196, 168)",
+    "sizes": "(min-width: 1201px) 265px, (min-width: 1024px) 408px, (min-width: 768px) 293px, 310px",
+    "avifQuality": 60,
+    "avifSSIM": 0.9807055035953665,
+    "webpQuality": 83,
+    "webpSSIM": 0.9813605563491955,
+    "avifVariants": [
+      {
+        "width": 320,
+        "height": 265,
+        "filename": "images/akshat-320.899dd384.avif",
+        "bytes": 8041
+      },
+      {
+        "width": 380,
+        "height": 315,
+        "filename": "images/akshat-380.0bb8fd23.avif",
+        "bytes": 9887
+      }
+    ],
+    "webpVariants": [
+      {
+        "width": 320,
+        "height": 265,
+        "filename": "images/akshat-320.d1952741.webp",
+        "bytes": 10784
+      },
+      {
+        "width": 380,
+        "height": 315,
+        "filename": "images/akshat-380.2eb68bd2.webp",
+        "bytes": 13220
+      }
+    ],
+    "defaultWebp": {
+      "width": 380,
+      "height": 315,
+      "filename": "images/akshat-380.2eb68bd2.webp",
+      "bytes": 13220
+    }
+  }
+}

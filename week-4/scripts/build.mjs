@@ -47,19 +47,27 @@ async function build() {
     const entry = manifest[rawSrc];
     if (!entry) continue;
 
+    // Determine context-specific sizes and loading priority
+    const isHeaderLogo = rawSrc.includes('enigma-logo') && img.closest('.header') !== null;
+    const isFlowchartLogo = rawSrc.includes('enigma-logo') && !isHeaderLogo;
+
+    let sizes = entry.sizes;
+    if (isHeaderLogo) {
+      sizes = '34px';
+    } else if (isFlowchartLogo) {
+      sizes = '24px';
+    }
+
     const avifSrcset = entry.avifVariants.map((v) => `${v.filename} ${v.width}w`).join(', ');
     const webpSrcset = entry.webpVariants.map((v) => `${v.filename} ${v.width}w`).join(', ');
-    const sizes = entry.sizes;
 
-    // Determine loading priority
-    const isHeaderLogo = rawSrc.includes('enigma-logo') && img.closest('.header') !== null;
     const loading = isHeaderLogo ? 'eager' : 'lazy';
     const fetchpriority = isHeaderLogo ? 'high' : null;
     const decoding = isHeaderLogo ? null : 'async';
 
-    // Set placeholder average color on container for lazy images
+    // Set placeholder average color on container for lazy images (posters and team photos)
     if (loading === 'lazy') {
-      const container = img.closest('.event-poster-wrapper, .team-photo-wrap, .flowchart-root-node');
+      const container = img.closest('.event-poster-wrapper, .team-photo-wrap');
       if (container) {
         const existingStyle = container.getAttribute('style') || '';
         const separator = existingStyle && !existingStyle.trim().endsWith(';') ? '; ' : (existingStyle ? ' ' : '');
@@ -95,7 +103,7 @@ async function build() {
       .map(([k, v]) => `${k}="${v.replace(/"/g, '&quot;')}"`)
       .join(' ');
 
-    const pictureHtml = `<picture>` +
+    const pictureHtml = `<picture style="display: contents;">` +
       `<source type="image/avif" srcset="${avifSrcset}" sizes="${sizes}">` +
       `<source type="image/webp" srcset="${webpSrcset}" sizes="${sizes}">` +
       `<img ${attrStr}>` +
