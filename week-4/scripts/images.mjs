@@ -64,8 +64,16 @@ async function findOptimalQuality(srcPath, maxDisplayWidth, format, minQ, maxQ, 
   return { quality: bestQ, ssim: bestSSIM };
 }
 
+function formatBytes(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KiB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MiB`;
+}
+
 export async function processImages() {
   console.log('[images] Starting responsive image optimization with Sharp & SSIM...');
+
+  fs.mkdirSync(imagesDistDir, { recursive: true });
 
   const htmlContent = fs.readFileSync(path.join(srcDir, 'index.html'), 'utf8');
   const root = parse(htmlContent);
@@ -97,10 +105,8 @@ export async function processImages() {
     let targetWidths = [];
     let sizes = '';
     let maxDisplayWidth = 448;
-    let isLogo = false;
 
     if (relSrc.includes('enigma-logo')) {
-      isLogo = true;
       targetWidths = [72, 144];
       maxDisplayWidth = 72;
       sizes = '34px';
@@ -183,7 +189,7 @@ export async function processImages() {
       });
     }
 
-    // Default WebP fallback is the mid-sized or full width variant
+    // Default WebP fallback: use the 480w variant if available, otherwise largest
     let defaultWebp = webpVariants.find((v) => v.width === 480) || webpVariants[webpVariants.length - 1];
 
     manifest[relSrc] = {
@@ -211,6 +217,7 @@ export async function processImages() {
       webpSSIM: webpResult.ssim,
       avifVariants,
       webpVariants,
+      defaultWebp,
     });
   }
 
@@ -218,7 +225,78 @@ export async function processImages() {
   fs.writeFileSync(path.join(imagesDistDir, 'manifest.json'), JSON.stringify(manifest, null, 2));
   console.log('[images] Manifest written to dist/images/manifest.json');
 
+  // Generate perf/images.md
+  generateImagesMarkdown(imageReports);
+
   return { manifest, imageReports };
+}
+
+function generateImagesMarkdown(imageReports) {
+  const imagesMdPath = path.join(rootDir, 'perf', 'images.md');
+  let md = `# Image Optimization & Responsive Delivery Report\n\n`;
+
+  md += `## 1. Browser Support & Format Strategy\n\n`;
+  md += `### AVIF Support\n`;
+  md += `- **Minimum Versions**: Chrome 85+ (Aug 2020), Firefox 93+ (Oct 2021), Safari 16.1+ / iOS 16 (Oct 2022), Edge 121+ (Jan 2024).\n`;
+  md += `- **Global Support**: ~93.8% of global browser traffic ([Can I Use: AVIF](https://caniuse.com/avif)).\n`;
+  md += `- **Role**: Primary modern format served via \`<source type="image/avif">\`. Provides state-of-the-art compression (typically 25-50% smaller than WebP at identical visual fidelity).\n\n`;
+
+  md += `### WebP Support\n`;
+  md += `- **Minimum Versions**: Chrome 32+ (Nov 2013), Firefox 65+ (Jan 2019), Safari 14+ (Sep 2020), Edge 18+ (Nov 2018).\n`;
+  md += `- **Global Support**: ~97.3% of global browser traffic ([Can I Use: WebP](https://caniuse.com/webp)).\n`;
+  md += `- **Role**: Universal fallback served via \`<source type="image/webp">\` and default \`<img src="...">\`. Guarantees backwards compatibility for browsers lacking AVIF support while delivering significant savings over legacy JPEG/PNG.\n\n`;
+
+  md += `### Quality Selection Rationale (SSIM >= 0.98)\n`;
+  md += `- Automated per-image parameter search evaluated Structural Similarity Index Measure (SSIM) against the uncompressed original resized to maximum display viewport size.\n`;
+  md += `- The lowest quality setting satisfying SSIM >= 0.98 was selected, ensuring perceptual transparency without wasting bytes.\n`;
+  md += `- Posters achieved threshold at AVIF q=40 and WebP q=60. Team portraits required higher quality (q=44-68 for AVIF, q=64-84 for WebP) to preserve fine facial details.\n\n`;
+
+  md += `## 2. Per-Image Variants and Compression Results\n\n`;
+
+  let totalOrigBytes = 0;
+  let totalMobileAvifBytes = 0;
+  let totalDesktopAvifBytes = 0;
+
+  for (const report of imageReports) {
+    totalOrigBytes += report.origBytes;
+
+    // Pick typical mobile variant (e.g. 320w or 480w)
+    const mobileAvif = report.avifVariants.find((v) => v.width === 320) || report.avifVariants[0];
+    const desktopAvif = report.avifVariants.find((v) => v.width === 480) || report.avifVariants[report.avifVariants.length - 1];
+
+    totalMobileAvifBytes += mobileAvif.bytes;
+    totalDesktopAvifBytes += desktopAvif.bytes;
+
+    md += `### \`${report.relSrc}\`\n`;
+    md += `- **Original**: ${formatBytes(report.origBytes)} (${report.dimensions})\n`;
+    md += `- **Chosen Quality**: AVIF q=${report.avifQ} (SSIM: ${report.avifSSIM.toFixed(4)}), WebP q=${report.webpQ} (SSIM: ${report.webpSSIM.toFixed(4)})\n\n`;
+
+    md += `| Format | Width | Height | Output File | Size | Savings vs Original |\n`;
+    md += `| :--- | :--- | :--- | :--- | :--- | :--- |\n`;
+
+    for (const v of report.avifVariants) {
+      const savedPct = (((report.origBytes - v.bytes) / report.origBytes) * 100).toFixed(1);
+      md += `| AVIF | ${v.width}px | ${v.height}px | \`${v.filename}\` | ${formatBytes(v.bytes)} | **-${savedPct}%** |\n`;
+    }
+    for (const v of report.webpVariants) {
+      const savedPct = (((report.origBytes - v.bytes) / report.origBytes) * 100).toFixed(1);
+      md += `| WebP | ${v.width}px | ${v.height}px | \`${v.filename}\` | ${formatBytes(v.bytes)} | **-${savedPct}%** |\n`;
+    }
+    md += `\n`;
+  }
+
+  const mobileSavedPct = (((totalOrigBytes - totalMobileAvifBytes) / totalOrigBytes) * 100).toFixed(1);
+  const desktopSavedPct = (((totalOrigBytes - totalDesktopAvifBytes) / totalOrigBytes) * 100).toFixed(1);
+
+  md += `## 3. Overall Totals\n\n`;
+  md += `| Metric | Baseline (Legacy PNG/JPG) | Optimized Mobile (AVIF) | Optimized Desktop (AVIF) |\n`;
+  md += `| :--- | :--- | :--- | :--- |\n`;
+  md += `| **Total Image Payload** | **${formatBytes(totalOrigBytes)}** | **${formatBytes(totalMobileAvifBytes)}** | **${formatBytes(totalDesktopAvifBytes)}** |\n`;
+  md += `| **Bytes Saved** | Baseline | **${formatBytes(totalOrigBytes - totalMobileAvifBytes)}** | **${formatBytes(totalOrigBytes - totalDesktopAvifBytes)}** |\n`;
+  md += `| **Percentage Reduction** | 0.0% | **-${mobileSavedPct}%** | **-${desktopSavedPct}%** |\n`;
+
+  fs.writeFileSync(imagesMdPath, md, 'utf8');
+  console.log(`[images] Summary report written to ${imagesMdPath}`);
 }
 
 // Run if called directly
