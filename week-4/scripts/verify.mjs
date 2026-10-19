@@ -215,8 +215,43 @@ async function run() {
         }
       });
 
+      const googleFontRequests = [];
+      page.on('request', (req) => {
+        if (req.url().includes('fonts.googleapis.com') || req.url().includes('fonts.gstatic.com')) {
+          googleFontRequests.push(req.url());
+        }
+      });
+
       await page.goto(distServer.url, { waitUntil: 'load' });
       await scrollPage(page);
+
+      // Verify zero third-party font requests
+      reportItem(
+        `[${vp.name}] Zero requests to fonts.googleapis.com or fonts.gstatic.com`,
+        googleFontRequests.length === 0,
+        googleFontRequests.join('; ')
+      );
+
+      // Verify document.fonts.check() is true for every used face
+      const fontChecks = await page.evaluate(async () => {
+        if (document.fonts) await document.fonts.ready;
+        return {
+          'Inter 400': document.fonts.check('400 16px Inter'),
+          'Inter 700': document.fonts.check('700 16px Inter'),
+          'Space Grotesk 400': document.fonts.check('400 16px "Space Grotesk"'),
+          'Space Grotesk 700': document.fonts.check('700 16px "Space Grotesk"'),
+          'Space Mono 400': document.fonts.check('400 16px "Space Mono"'),
+          'Playfair Display 600 Italic': document.fonts.check('italic 600 16px "Playfair Display"'),
+          'Playfair Display 700 Italic': document.fonts.check('italic 700 16px "Playfair Display"'),
+        };
+      });
+      const allFontsReady = Object.values(fontChecks).every(Boolean);
+      const failedFontList = Object.entries(fontChecks).filter(([, v]) => !v).map(([k]) => k).join(', ');
+      reportItem(
+        `[${vp.name}] document.fonts.check() is true for every used face`,
+        allFontsReady,
+        failedFontList ? `Missing: ${failedFontList}` : ''
+      );
 
       // Check broken images
       const brokenImages = await page.evaluate(() => {

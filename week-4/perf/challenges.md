@@ -17,3 +17,10 @@
 - **Problem**: The initial verification check for `Tab and Shift+Tab never reach content behind open menu` failed when activeElement focused the logo in `<header>` or `body`.
 - **Cause**: In the baseline implementation, the `<header>` element houses the hamburger button and remains visible and interactive (only `#main`, `footer`, and `.skip-link` are marked `inert`). The verification test initially expected all focus to be strictly inside `#mobile-nav` or `#hamburger`.
 - **Fix**: Updated the verification assertion in `scripts/verify.mjs` to verify that activeElement never enters `#main`, `footer`, or `.skip-link` (the content visually and semantically behind the open menu), matching the requirement and baseline design exactly.
+
+## 2026-10-20 — Challenge 2.1: Variable font continuous weights vs baseline snapped weights
+- **Date**: 2026-10-20
+- **Problem**: In the baseline, `.hero-btn-primary` had `font-weight: 600`, but Google Fonts only supplied weights 400 and 700, so Chrome snapped 600 to 700. When using a continuous variable font range (`font-weight: 300 700;`), the browser rendered true 600 weight, creating a slight visual difference (685 differing pixels, 0.0119%).
+- **Cause**: The continuous variable font axis rendered the intermediate 600 weight, which diverged from the baseline's synthesized 700 weight.
+- **Fix**: Declared discrete `@font-face` rules for weight 400 and weight 700 both pointing to the same single variable font file (`space-grotesk-latin-wght-normal.woff2`). This retained the full 3,940-byte file size savings of the variable font while matching the baseline rendering with 0.0000% diff on desktop and 0.0001% on mobile.
+

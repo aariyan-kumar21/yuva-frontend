@@ -227,3 +227,76 @@ UNKNOWN.
 
 ---
 
+## Run: `02-fonts` (dist) — 2026-10-19
+
+### MOBILE Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 63 | 67 | 66 | **66** | 63 - 67 |
+| **FCP** | 1671 ms | 1665 ms | 1661 ms | **1665 ms** | 1661 ms - 1671 ms |
+| **LCP** | 19439 ms | 19435 ms | 19432 ms | **19435 ms** | 19432 ms - 19439 ms |
+| **TBT** | 408 ms | 288 ms | 313 ms | **313 ms** | 288 ms - 408 ms |
+| **Speed Index** | 3349 ms | 3310 ms | 3326 ms | **3326 ms** | 3310 ms - 3349 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0000
+- **Total Byte Weight**: 3.94 MiB
+- **Network Requests**: 22
+- **DOM Elements**: 302
+- **Unused CSS**: 0 B
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 20.4 KiB | 27.2 KiB | 11.7 KiB | 131.3 KiB | 3.75 MiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 1082 ms
+- **Style & Layout**: 799 ms
+- **Script Evaluation**: 28 ms
+- **Rendering**: 11 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > p.hero-desc`
+- **LCP Snippet**: `<p class="hero-desc">`
+- **LCP Node Label**: A student-led collective building, experimenting, and deploying ideas that chal…
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 2% | 454 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 98% | 18979 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 3
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 341 ms | 3165 ms | `http://localhost:49681/script.js` |
+| 72 ms | 3506 ms | `http://localhost:49681/script.js` |
+| 60 ms | 754 ms | `Unattributable` |
+
+#### Render-Blocking Resources
+
+| Resource URL | Total Bytes | Wasted Potential |
+| :--- | :--- | :--- |
+| `http://localhost:49681/style.css` | 27.2 KiB | 154 ms |
+
+#### Image Delivery Insights
+
+- **Next-Gen / Modern Formats Savings Potential**: 12 images could save bytes in WebP/AVIF format.
+- **Properly Size Images Savings Potential**: 5 images oversized for display dimensions.
+
+---
+
