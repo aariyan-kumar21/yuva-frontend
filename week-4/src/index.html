@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENIGMA — Student Tech Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono&family=Playfair+Display:ital,wght@1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link sr-only sr-only-focusable">Skip to main content</a>
+  <header class="header">
+    <a href="#home" class="logo">
+      <img src="assets/enigma-logo.jpg" alt="ENIGMA Logo" class="logo-img">
+      <span class="logo-text">ENIGMA</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#team">Core Team</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
+    </nav>
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-pill nav-cta">Join Community</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <ul class="mobile-nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#team">Core Team</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#contact" class="btn btn-pill nav-cta">Join Community</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" tabindex="-1">
+    <!-- HERO SECTION -->
+    <section id="home" class="hero section-padding">
+      <div class="hero-left">
+        <h1 class="hero-title">
+          <span>SOLVE THE</span>
+          <br>
+          <span class="accent italic">UNKNOWN.</span>
+        </h1>
+        <p class="hero-desc">
+          A student-led collective building, experimenting, and deploying ideas that challenge the ordinary and create <span class="accent">real-world impact.</span>
+        </p>
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-pill hero-btn-primary">Explore Enigma</a>
+          <a href="#contact" class="btn btn-pill hero-btn-secondary">Join Community</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="mission-label mono-label accent">[ OUR MISSION ]</div>
+        <div class="mission-statement">
+          <h2>
+            <span>IDEAS.</span>
+            <span>PEOPLE.</span>
+            <span>SYSTEMS.</span>
+            <span class="accent">REAL IMPACT.</span>
+          </h2>
+        </div>
+        <p class="mission-desc">
+          We bring together curious minds, fearless builders, and creative problem-solvers to learn, build, and break new ground in technology.
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about section-padding">
+      <div class="about-header">
+        <div class="mono-label">01 / ABOUT</div>
+        <h2 class="section-title">ABOUT<br><span class="accent italic">ENIGMA</span></h2>
+      </div>
+      <div class="about-content">
+        <blockquote class="about-quote">
+          We build without limits. We question what exists, create what doesn't, and empower the next generation of technical minds to make a real impact.
+        </blockquote>
+        <!-- FLOWCHART SYSTEM -->
+        <div class="flowchart-container">
+          <!-- Central Origin Node -->
+          <div class="flowchart-root">
+            <div class="flowchart-root-node">
+              <img src="assets/enigma-logo.jpg" alt="" class="flowchart-root-logo" aria-hidden="true">
+              <span class="flowchart-root-label">ENIGMA</span>
+            </div>
+            <div class="flowchart-stem" aria-hidden="true"></div>
+          </div>
+
+          <!-- Tree Branches & Cards -->
+          <div class="flowchart-tree">
+            <div class="flowchart-trunk" aria-hidden="true"></div>
+            <div class="flowchart-grid">
+              
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">01</span>
+                    <span class="card-category">TECH</span>
+                  </div>
+                  <h3 class="card-heading">Tech Innovation</h3>
+                  <p class="card-text">Fostering creative solutions and cutting-edge technological advancement in a raw technical environment.</p>
+                </div>
+              </div>
+
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">02</span>
+                    <span class="card-category">COMMUNITY</span>
+                  </div>
+                  <h3 class="card-heading">Core Community</h3>
+                  <p class="card-text">Building a collaborative network of passionate tech enthusiasts and technical rebels.</p>
+                </div>
+              </div>
+
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">03</span>
+                    <span class="card-category">MISSION</span>
+                  </div>
+                  <h3 class="card-heading">Mission Excellence</h3>
+                  <p class="card-text">Striving for technical mastery and professional development through rigorous learning and real-world creation.</p>
+                </div>
+              </div>
+
+              <div class="flowchart-branch">
+                <div class="branch-connector" aria-hidden="true">
+                  <span class="connector-dot"></span>
+                  <span class="connector-line"></span>
+                </div>
+                <div class="flowchart-card">
+                  <div class="flowchart-card-top">
+                    <span class="card-step-badge">04</span>
+                    <span class="card-category">SYSTEM</span>
+                  </div>
+                  <h3 class="card-heading">Mission.log</h3>
+                  <p class="card-text">Empowering students with the knowledge and community needed to excel in technical innovation and create lasting impact.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="events" class="events section-padding">
+      <h2 class="section-title">OUR <span class="accent italic">EVENTS.</span></h2>
+      <div class="events-grid">
+        
+        <!-- Card 1: Wheel of Fortune -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/wheel-of-fortune.png" alt="Poster for The Wheel of Fortune event" class="event-poster-img">
+          </div>
+          <div class="event-status-pill pill-upcoming">
+            <span class="status-dot dot-upcoming" aria-hidden="true"></span>
+            <span class="status-text">UPCOMING</span>
+          </div>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">EVENT</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date">UPCOMING</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-venue">VENUE: 002</span>
+            </div>
+            <h3 class="event-title"><span class="event-title-prefix">the</span> WHEEL OF FORTUNE</h3>
+          </div>
+        </article>
+
+        <!-- Card 2: Race for Roles -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/race-for-roles.png" alt="Poster for Race for Roles auditions" class="event-poster-img">
+          </div>
+          <div class="event-status-pill pill-past">
+            <span class="status-dot dot-past" aria-hidden="true"></span>
+            <span class="status-text">PAST</span>
+          </div>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">AUDITIONS 2026</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date"><time datetime="2026-09-29">SEPTEMBER 29, 2026</time></span>
+            </div>
+            <h3 class="event-title"><span class="event-title-prefix">the</span> RACE FOR ROLES</h3>
+          </div>
+        </article>
+
+        <!-- Card 3: Jain's Got Latent -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/jains-got-latent.png" alt="Poster for Jain's Got Latent event" class="event-poster-img">
+          </div>
+          <div class="event-status-pill pill-past">
+            <span class="status-dot dot-past" aria-hidden="true"></span>
+            <span class="status-text">PAST</span>
+          </div>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">EVENT</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date"><time datetime="2026-04-28">APRIL 28, 2026</time></span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-venue">VENUE: 002</span>
+            </div>
+            <h3 class="event-title">JAIN'S GOT LATENT</h3>
+          </div>
+        </article>
+
+        <!-- Card 4: Blind Date -->
+        <article class="event-card">
+          <div class="event-poster-wrapper">
+            <img src="assets/events/blind-date.png" alt="Poster for Blind Date event" class="event-poster-img">
+          </div>
+          <div class="event-status-pill pill-past">
+            <span class="status-dot dot-past" aria-hidden="true"></span>
+            <span class="status-text">PAST</span>
+          </div>
+          <div class="event-info-overlay">
+            <div class="event-meta">
+              <span class="event-type">EVENT</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-date"><time datetime="2026-03-17">MARCH 17, 2026</time></span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <span class="event-venue">VENUE: 002</span>
+            </div>
+            <h3 class="event-title">BLIND DATE</h3>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CORE TEAM SECTION -->
+    <section id="team" class="team section-padding">
+      <div class="team-header">
+        <h2 class="section-title">THE <span class="accent italic">CORE TEAM.</span></h2>
+        <p class="team-subtext">The people shaping ENIGMA, driving its initiatives, and turning ideas into meaningful technical experiences.</p>
+      </div>
+      <div class="team-grid">
+        
+        <!-- Adrija: President -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/adrija.jpg" alt="Adrija - President" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">PRESIDENT</span>
+            </div>
+            <h3 class="team-name">Adrija</h3>
+            <p class="team-quote">"Leading ENIGMA towards technical rebellion, fostering innovation, and steering the community forward."</p>
+          </div>
+        </div>
+
+        <!-- Srinjay: Vice President -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/srinjay.jpg" alt="Srinjay - Vice President" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">VICE PRESIDENT</span>
+            </div>
+            <h3 class="team-name">Srinjay</h3>
+            <p class="team-quote">"Driving operational excellence, coordinating initiatives, and empowering team execution."</p>
+          </div>
+        </div>
+
+        <!-- Hriddhima: Secretary -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/hriddhima.jpg" alt="Hriddhima - Secretary" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">SECRETARY</span>
+            </div>
+            <h3 class="team-name">Hriddhima</h3>
+            <p class="team-quote">"Managing organizational workflows, communications, and aligning club operations."</p>
+          </div>
+        </div>
+
+        <!-- Anchita: Tech Lead -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/anchita.jpg" alt="Anchita - Tech Lead" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">TECH LEAD</span>
+            </div>
+            <h3 class="team-name">Anchita</h3>
+            <p class="team-quote">"Architecting technical builds, leading project development, and mentoring members in cutting-edge tech."</p>
+          </div>
+        </div>
+
+        <!-- Arpita: Resource Lead -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/arpita.jpg" alt="Arpita - Resource Lead" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">RESOURCE LEAD</span>
+            </div>
+            <h3 class="team-name">Arpita</h3>
+            <p class="team-quote">"Strategizing resource management, optimizing asset allocations, and powering club initiatives."</p>
+          </div>
+        </div>
+
+        <!-- Disha: Social Media Lead -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/disha.jpg" alt="Disha - Social Media Lead" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">SOCIAL MEDIA LEAD</span>
+            </div>
+            <h3 class="team-name">Disha</h3>
+            <p class="team-quote">"Crafting digital narratives, managing media outreach, and amplifying ENIGMA's voice."</p>
+          </div>
+        </div>
+
+        <!-- Akshat: Photography Lead -->
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img src="assets/team/akshat.jpg" alt="Akshat - Photography Lead" class="team-img">
+          </div>
+          <div class="team-info">
+            <div class="team-role-bar">
+              <span class="role-indicator" aria-hidden="true"></span>
+              <span class="team-role">PHOTOGRAPHY LEAD</span>
+            </div>
+            <h3 class="team-name">Akshat</h3>
+            <p class="team-quote">"Capturing moments, documenting visual stories, and immortalizing every milestone."</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+  </main>
+
+
+
+  <footer id="contact" class="footer">
+    <div class="footer-layout">
+      <div class="footer-col brand-col">
+        <div class="logo">
+          <span class="logo-text">ENIGMA</span>
+        </div>
+        <p class="footer-tagline">Student-led collective dedicated to technical rebellion and innovative deployment.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/ju_enigma/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on Instagram" title="Visit ENIGMA on Instagram">Ig</a>
+          <a href="https://chat.whatsapp.com/KUe221OJGsd63Hs5grwUMS" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on WhatsApp" title="WhatsApp">Wa</a>
+          <a href="https://www.linkedin.com/company/enigma-club-ju/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="ENIGMA on LinkedIn" title="Visit ENIGMA on LinkedIn">In</a>
+        </div>
+      </div>
+      <div class="footer-col nav-col">
+        <p class="footer-heading">Navigation</p>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#team">Core Team</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-col contact-col">
+        <p class="footer-heading">Contact</p>
+        <p><a href="mailto:enigmaclub5@gmail.com">enigmaclub5@gmail.com</a></p>
+        <p><a href="tel:+919696724664">+91 96967 24664</a></p>
+        <p class="footer-address">
+          <a href="https://www.google.com/maps/search/?api=1&query=JAIN+Deemed-to-be-University+FET+Kanakapura+Road+Bengaluru+Karnataka+562112" target="_blank" rel="noopener noreferrer" class="map-link" title="Open Jain University location in Google Maps">
+            JAIN (Deemed-to-be-University), FET<br>Bengaluru - Kanakapura Rd,<br>Bengaluru, Karnataka 562112
+          </a>
+        </p>
+      </div>
+      <div class="footer-col form-col">
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <h3 class="contact-card-title">Send a Message</h3>
+            <p class="contact-card-subtitle">Connect with our core team directly.</p>
+          </div>
+          <form id="contactForm" class="contact-card-form">
+            <div class="form-group">
+              <label for="contact-name" class="sr-only">Name</label>
+              <input type="text" id="contact-name" placeholder="Name" required class="form-input">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-email" class="sr-only">Email</label>
+              <input type="email" id="contact-email" placeholder="Email" required class="form-input">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-message" class="sr-only">Message</label>
+              <textarea id="contact-message" placeholder="Message" required rows="4" class="form-input"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-pill form-card-btn">SEND MESSAGE</button>
+          </form>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ENIGMA | ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
