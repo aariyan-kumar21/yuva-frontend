@@ -581,3 +581,74 @@ UNKNOWN.
 
 ---
 
+## Run: `07-html-delivery` (dist) — 2026-10-20
+
+### MOBILE Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 84 | 84 | 85 | **84** | 84 - 85 |
+| **FCP** | 1950 ms | 1846 ms | 1833 ms | **1846 ms** | 1833 ms - 1950 ms |
+| **LCP** | 2653 ms | 2589 ms | 2577 ms | **2589 ms** | 2577 ms - 2653 ms |
+| **TBT** | 432 ms | 394 ms | 378 ms | **394 ms** | 378 ms - 432 ms |
+| **Speed Index** | 1950 ms | 4244 ms | 4257 ms | **4244 ms** | 1950 ms - 4257 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0013
+- **Total Byte Weight**: 269.2 KiB
+- **Network Requests**: 13
+- **DOM Elements**: 340
+- **Unused CSS**: 0 B
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 45.9 KiB | 0 B | 6.0 KiB | 131.3 KiB | 85.9 KiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 1805 ms
+- **Style & Layout**: 1201 ms
+- **Script Evaluation**: 52 ms
+- **Rendering**: 57 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > p.hero-desc`
+- **LCP Snippet**: `<p class="hero-desc">`
+- **LCP Node Label**: A student-led collective building, experimenting, and deploying ideas that chal…
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 17% | 459 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 83% | 2193 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 4
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 482 ms | 2146 ms | `http://localhost:53177/assets/script.c7ddfbfc.js` |
+| 183 ms | 1086 ms | `http://localhost:53177/` |
+| 100 ms | 909 ms | `Unattributable` |
+| 50 ms | 2628 ms | `http://localhost:53177/assets/script.c7ddfbfc.js` |
+
+#### Render-Blocking Resources
+
+*No render-blocking resources identified*
+
+#### Image Delivery Insights
+
+*No major image delivery optimizations flagged*
+
+---
+

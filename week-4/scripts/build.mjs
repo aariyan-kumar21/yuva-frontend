@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
 import { parse } from 'node-html-parser';
+import { minify } from 'html-minifier-terser';
 import { processImages } from './images.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -184,7 +185,23 @@ async function build() {
     console.log(`  Added deferred script tag to <head>: assets/${scriptFileName}`);
   }
 
-  fs.writeFileSync(distHtmlPath, root.toString(), 'utf8');
+  // 7. Minify HTML with html-minifier-terser
+  const unminifiedHtml = root.toString();
+  const minifiedHtml = await minify(unminifiedHtml, {
+    collapseWhitespace: true,
+    removeComments: true,
+    removeAttributeQuotes: false,
+    removeOptionalTags: false,
+    minifyCSS: false,
+    minifyJS: false,
+    removeEmptyAttributes: false,
+    collapseBooleanAttributes: false,
+    caseSensitive: true,
+    keepClosingSlash: true,
+  });
+
+  fs.writeFileSync(distHtmlPath, minifiedHtml, 'utf8');
+  console.log(`  Minified dist/index.html with html-minifier-terser (${unminifiedHtml.length} -> ${minifiedHtml.length} bytes)`);
   console.log('[build] Successfully transformed dist/index.html with inlined CSS, deferred minified JS, & responsive pictures.');
   console.log('[build] Build completed successfully.');
 }
