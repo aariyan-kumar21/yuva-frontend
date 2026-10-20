@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node ./scripts/build.mjs",
     "verify": "node ./scripts/verify.mjs",
-    "measure": "node ./perf/measure.mjs"
+    "measure": "node ./perf/measure.mjs",
+    "budget": "node ./scripts/check-budget.mjs"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",

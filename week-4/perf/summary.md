@@ -652,3 +652,138 @@ UNKNOWN.
 
 ---
 
+## Run: `09-final` (dist) — 2026-10-20
+
+### MOBILE Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 84 | 83 | 88 | **84** | 83 - 88 |
+| **FCP** | 1857 ms | 1872 ms | 1752 ms | **1857 ms** | 1752 ms - 1872 ms |
+| **LCP** | 2594 ms | 2611 ms | 2488 ms | **2594 ms** | 2488 ms - 2611 ms |
+| **TBT** | 395 ms | 426 ms | 295 ms | **395 ms** | 295 ms - 426 ms |
+| **Speed Index** | 4266 ms | 4329 ms | 4295 ms | **4295 ms** | 4266 ms - 4329 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0000
+- **Total Byte Weight**: 269.2 KiB
+- **Network Requests**: 13
+- **DOM Elements**: 340
+- **Unused CSS**: 0 B
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 45.9 KiB | 0 B | 6.0 KiB | 131.3 KiB | 85.9 KiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 1291 ms
+- **Style & Layout**: 990 ms
+- **Script Evaluation**: 38 ms
+- **Rendering**: 26 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > p.hero-desc`
+- **LCP Snippet**: `<p class="hero-desc">`
+- **LCP Node Label**: A student-led collective building, experimenting, and deploying ideas that chal…
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 18% | 455 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 82% | 2139 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 3
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 429 ms | 2125 ms | `http://localhost:57200/assets/script.c7ddfbfc.js` |
+| 81 ms | 2554 ms | `http://localhost:57200/assets/script.c7ddfbfc.js` |
+| 68 ms | 905 ms | `Unattributable` |
+
+#### Render-Blocking Resources
+
+*No render-blocking resources identified*
+
+#### Image Delivery Insights
+
+*No major image delivery optimizations flagged*
+
+### DESKTOP Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 100 | 100 | 100 | **100** | 100 - 100 |
+| **FCP** | 440 ms | 448 ms | 460 ms | **448 ms** | 440 ms - 460 ms |
+| **LCP** | 599 ms | 611 ms | 608 ms | **608 ms** | 599 ms - 611 ms |
+| **TBT** | 35 ms | 40 ms | 56 ms | **40 ms** | 35 ms - 56 ms |
+| **Speed Index** | 615 ms | 599 ms | 624 ms | **615 ms** | 599 ms - 624 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0006
+- **Total Byte Weight**: 297.9 KiB
+- **Network Requests**: 21
+- **DOM Elements**: 340
+- **Unused CSS**: 0 B
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 45.9 KiB | 0 B | 6.0 KiB | 131.3 KiB | 114.6 KiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 368 ms
+- **Style & Layout**: 271 ms
+- **Script Evaluation**: 12 ms
+- **Rendering**: 14 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > h1.hero-title`
+- **LCP Snippet**: `<h1 class="hero-title">`
+- **LCP Node Label**: SOLVE THE
+UNKNOWN.
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 20% | 122 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 80% | 486 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 1
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 106 ms | 486 ms | `http://localhost:57200/assets/script.c7ddfbfc.js` |
+
+#### Render-Blocking Resources
+
+*No render-blocking resources identified*
+
+#### Image Delivery Insights
+
+*No major image delivery optimizations flagged*
+
+---
+

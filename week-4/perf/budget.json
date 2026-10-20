@@ -1,0 +1,17 @@
+{
+  "description": "Production performance budget set ~10% above achieved final dist metrics",
+  "limits": {
+    "firstLoadTransferBytes": 305000,
+    "firstLoadRequests": 15,
+    "fullyScrolledTransferBytes": 335000,
+    "jsRawBytes": 6500,
+    "cssRawBytes": 23000
+  },
+  "achieved": {
+    "firstLoadTransferBytes": 275660,
+    "firstLoadRequests": 13,
+    "fullyScrolledTransferBytes": 302500,
+    "jsRawBytes": 5878,
+    "cssRawBytes": 20899
+  }
+}
