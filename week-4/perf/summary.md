@@ -511,3 +511,73 @@ UNKNOWN.
 
 ---
 
+## Run: `06-js` (dist) — 2026-10-20
+
+### MOBILE Profile
+
+#### Core Performance Metrics
+
+| Metric | Run 1 | Run 2 | Run 3 | Median | Min - Max |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Performance Score** | 91 | 91 | 92 | **91** | 91 - 92 |
+| **FCP** | 1728 ms | 1723 ms | 1690 ms | **1723 ms** | 1690 ms - 1728 ms |
+| **LCP** | 2464 ms | 2434 ms | 2423 ms | **2434 ms** | 2423 ms - 2464 ms |
+| **TBT** | 264 ms | 268 ms | 234 ms | **264 ms** | 234 ms - 268 ms |
+| **Speed Index** | 2867 ms | 2705 ms | 2620 ms | **2705 ms** | 2620 ms - 2867 ms |
+
+#### Diagnostics & Page Overview (Median Run)
+
+- **CLS**: 0.0000
+- **Total Byte Weight**: 274.5 KiB
+- **Network Requests**: 13
+- **DOM Elements**: 340
+- **Unused CSS**: 0 B
+- **Unused JavaScript**: 0 B
+
+#### Bytes by Resource Type (Transfer Size)
+
+| Document | CSS | JavaScript | Fonts | Images | Other |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 51.3 KiB | 0 B | 6.0 KiB | 131.3 KiB | 85.9 KiB | 0 B |
+
+#### Main-Thread Work Breakdown
+
+- **Total Main-Thread Execution**: 965 ms
+- **Style & Layout**: 722 ms
+- **Script Evaluation**: 32 ms
+- **Rendering**: 14 ms
+
+#### Largest Contentful Paint (LCP) Element & Breakdown
+
+- **LCP Selector**: `main#main > section#home > div.hero-left > p.hero-desc`
+- **LCP Snippet**: `<p class="hero-desc">`
+- **LCP Node Label**: A student-led collective building, experimenting, and deploying ideas that chal…
+
+**LCP Breakdown Phases**:
+
+| Phase | % of LCP | Timing |
+| :--- | :--- | :--- |
+| TTFB | 18% | 455 ms |
+| Load Delay | 0% | 0 ms |
+| Load Time | 0% | 0 ms |
+| Render Delay | 82% | 2009 ms |
+
+#### Long Tasks (> 50 ms)
+
+- **Total Long Tasks**: 3
+| Duration | Start Time | URL / Attribution |
+| :--- | :--- | :--- |
+| 306 ms | 2125 ms | `http://localhost:54922/assets/script.c7ddfbfc.js` |
+| 65 ms | 2431 ms | `http://localhost:54922/assets/script.c7ddfbfc.js` |
+| 62 ms | 905 ms | `Unattributable` |
+
+#### Render-Blocking Resources
+
+*No render-blocking resources identified*
+
+#### Image Delivery Insights
+
+*No major image delivery optimizations flagged*
+
+---
+

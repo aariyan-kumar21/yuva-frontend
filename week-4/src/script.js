@@ -4,19 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
   const header = document.querySelector('.header');
 
-  // Dynamic blurry navbar on scroll
-  function updateHeaderOnScroll() {
-    if (!header) return;
-    if (window.scrollY > 15) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  }
-  window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
-  updateHeaderOnScroll();
-
-
   function getInertElements() {
     return [
       document.querySelector('a.skip-link'),
@@ -151,48 +138,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Gliding Nav Indicator
+  // Gliding Nav Indicator & IntersectionObserver Scroll Spy
   const navContainer = document.querySelector('.nav');
   const navLinksContainer = document.querySelector('.nav-links');
   const navLinks = document.querySelectorAll('.nav-links a');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
   const navIndicator = document.getElementById('nav-indicator');
 
   if (navLinks.length > 0 && navIndicator && navContainer) {
     let activeLink = document.querySelector('.nav-links a.active') || navLinks[0];
     let isUserClicking = false;
 
-    function positionIndicator(target, animate = true) {
-      if (!target) return;
-      if (!animate) {
-        navIndicator.style.transition = 'none';
-      } else {
-        navIndicator.style.transition = 'transform 0.28s cubic-bezier(0.25, 1, 0.5, 1), width 0.28s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease';
-      }
+    // Cache layout metrics to eliminate forced reflows during scroll
+    const cachedIndicatorMetrics = new Map();
+    let cachedDocHeight = 0;
+    let cachedWindowHeight = 0;
 
-      const targetRect = target.getBoundingClientRect();
+    function recomputeIndicatorMetrics() {
+      if (window.innerWidth <= 768) return;
       const navRect = navContainer.getBoundingClientRect();
-      const left = targetRect.left - navRect.left;
-      const width = targetRect.width;
-
-      navIndicator.style.width = `${width}px`;
-      navIndicator.style.transform = `translateX(${left}px)`;
-      navIndicator.style.opacity = '1';
-
-      if (!animate) {
-        void navIndicator.offsetWidth; // Force reflow
-        navIndicator.style.transition = 'transform 0.28s cubic-bezier(0.25, 1, 0.5, 1), width 0.28s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease';
-      }
+      navLinks.forEach((link) => {
+        const targetRect = link.getBoundingClientRect();
+        cachedIndicatorMetrics.set(link, {
+          left: targetRect.left - navRect.left,
+          width: targetRect.width
+        });
+      });
     }
 
-    // Initial position without animation
-    positionIndicator(activeLink, false);
+    function recomputePageMetrics() {
+      cachedWindowHeight = window.innerHeight;
+      cachedDocHeight = document.documentElement.scrollHeight;
+      recomputeIndicatorMetrics();
+    }
 
-    // Reposition when fonts load or window is resized
-    window.addEventListener('load', () => positionIndicator(activeLink, false));
-    window.addEventListener('resize', () => {
-      const currentActive = document.querySelector('.nav-links a.active') || activeLink;
-      positionIndicator(currentActive, false);
-    });
+    function positionIndicator(target, animate = true) {
+      if (!target || window.innerWidth <= 768) return;
+
+      let metrics = cachedIndicatorMetrics.get(target);
+      if (!metrics || metrics.width === 0) {
+        recomputeIndicatorMetrics();
+        metrics = cachedIndicatorMetrics.get(target);
+      }
+      if (!metrics) return;
+
+      navIndicator.style.transition = animate
+        ? 'transform 0.28s cubic-bezier(0.25, 1, 0.5, 1), width 0.28s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease'
+        : 'none';
+
+      navIndicator.style.width = `${metrics.width}px`;
+      navIndicator.style.transform = `translateX(${metrics.left}px)`;
+      navIndicator.style.opacity = '1';
+    }
+
+    function setActiveLink(link, animate = true) {
+      if (!link || link === activeLink) return;
+      navLinks.forEach((l) => l.classList.remove('active'));
+      link.classList.add('active');
+      activeLink = link;
+
+      const href = link.getAttribute('href');
+      mobileNavLinks.forEach((ml) => {
+        if (ml.getAttribute('href') === href) {
+          ml.classList.add('active');
+        } else {
+          ml.classList.remove('active');
+        }
+      });
+
+      positionIndicator(link, animate);
+    }
+
+    function setActiveSection(sectionId, animate = true) {
+      const matchingLink = Array.from(navLinks).find((l) => l.getAttribute('href') === `#${sectionId}`);
+      if (matchingLink) {
+        setActiveLink(matchingLink, animate);
+      }
+    }
 
     // Logo click to scroll to absolute top
     const logoLink = document.querySelector('a.logo');
@@ -200,17 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
       logoLink.addEventListener('click', (e) => {
         e.preventDefault();
         scrollToTarget('#home');
-        const homeLink = Array.from(navLinks).find(l => l.getAttribute('href') === '#home');
-        if (homeLink) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          homeLink.classList.add('active');
-          activeLink = homeLink;
-          positionIndicator(homeLink, true);
-        }
+        setActiveSection('home', true);
       });
     }
 
-    navLinks.forEach(link => {
+    navLinks.forEach((link) => {
       // Hover glide: move along with cursor
       link.addEventListener('mouseenter', () => {
         positionIndicator(link, true);
@@ -219,21 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Click: shift and lock indicator to clicked item & scroll with preserved spacing
       link.addEventListener('click', (e) => {
         isUserClicking = true;
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        activeLink = link;
-        positionIndicator(link, true);
+        setActiveLink(link, true);
 
-        // Also update mobile nav active state
         const href = link.getAttribute('href');
-        document.querySelectorAll('.mobile-nav-links a').forEach(ml => {
-          if (ml.getAttribute('href') === href) {
-            ml.classList.add('active');
-          } else {
-            ml.classList.remove('active');
-          }
-        });
-
         if (href && href.startsWith('#')) {
           e.preventDefault();
           scrollToTarget(href);
@@ -246,18 +250,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Other in-page buttons (Hero buttons, nav CTA, footer navigation links)
-    document.querySelectorAll('.hero-buttons a, .nav-cta, .footer-col.nav-col a').forEach(btn => {
+    document.querySelectorAll('.hero-buttons a, .nav-cta, .footer-col.nav-col a').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const href = btn.getAttribute('href');
         if (href && href.startsWith('#')) {
           e.preventDefault();
           scrollToTarget(href);
-          const matchingNav = Array.from(navLinks).find(l => l.getAttribute('href') === href);
+          const matchingNav = Array.from(navLinks).find((l) => l.getAttribute('href') === href);
           if (matchingNav) {
-            navLinks.forEach(l => l.classList.remove('active'));
-            matchingNav.classList.add('active');
-            activeLink = matchingNav;
-            positionIndicator(matchingNav, true);
+            setActiveLink(matchingNav, true);
           }
         }
       });
@@ -271,75 +272,144 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Robust Scroll Spy: tracks exact scroll position and smoothly glides the indicator
+    // Sections for IntersectionObserver Scroll Spy
     const sectionIds = ['home', 'about', 'events', 'team', 'contact'];
-    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+    const visibleSectionMap = new Map();
 
-    function updateActiveSectionOnScroll() {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (isUserClicking) return;
+
+        entries.forEach((entry) => {
+          visibleSectionMap.set(entry.target.id, entry);
+        });
+
+        // Find intersecting sections in document order
+        const intersecting = [];
+        for (const id of sectionIds) {
+          const entry = visibleSectionMap.get(id);
+          if (entry && entry.isIntersecting) {
+            intersecting.push(entry);
+          }
+        }
+
+        if (intersecting.length > 0) {
+          const activeEntry = intersecting[intersecting.length - 1];
+          setActiveSection(activeEntry.target.id, true);
+        }
+      },
+      {
+        rootMargin: '-100px 0px -50% 0px',
+      }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    // Bottom sentinel observer for the bottom-of-page -> Contact rule
+    const footerBottom = document.querySelector('.footer-bottom') || document.querySelector('footer');
+    if (footerBottom) {
+      const bottomObserver = new IntersectionObserver(
+        (entries) => {
+          if (isUserClicking) return;
+          if (entries[0] && entries[0].isIntersecting) {
+            setActiveSection('contact', true);
+          }
+        },
+        {
+          rootMargin: '0px 0px -40px 0px',
+        }
+      );
+      bottomObserver.observe(footerBottom);
+    }
+
+    // Consolidated single passive scroll listener guarded by requestAnimationFrame
+    let rAFScheduled = false;
+
+    function handleScrollUpdate() {
+      rAFScheduled = false;
+      const scrollY = window.scrollY;
+
+      // Dynamic blurry navbar on scroll
+      if (header) {
+        if (scrollY > 15) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+
       if (isUserClicking) return;
 
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
+      // Lazily cache doc and window height when needed
+      if (!cachedWindowHeight || !cachedDocHeight) {
+        cachedWindowHeight = window.innerHeight;
+        cachedDocHeight = document.documentElement.scrollHeight;
+      }
 
       // Bottom reached -> contact section is active
-      if (windowHeight + scrollY >= docHeight - 80) {
-        const contactLink = Array.from(navLinks).find(l => l.getAttribute('href') === '#contact');
-        if (contactLink && contactLink !== activeLink) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          contactLink.classList.add('active');
-          activeLink = contactLink;
-          positionIndicator(contactLink, true);
-        }
-        return;
-      }
-
-      // Check sections from top to bottom with comfortable header offset
-      let currentSectionId = 'home';
-      const offset = 100;
-
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        if (scrollY >= section.offsetTop - offset) {
-          currentSectionId = section.id;
-        }
-      }
-
-      const matchingLink = Array.from(navLinks).find(l => l.getAttribute('href') === `#${currentSectionId}`);
-      if (matchingLink && matchingLink !== activeLink) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        matchingLink.classList.add('active');
-        activeLink = matchingLink;
-        positionIndicator(matchingLink, true);
+      if (cachedWindowHeight + scrollY >= cachedDocHeight - 80) {
+        setActiveSection('contact', true);
       }
     }
 
-    window.addEventListener('scroll', () => {
-      requestAnimationFrame(updateActiveSectionOnScroll);
-    }, { passive: true });
-
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash;
-      if (hash) {
-        const matchingLink = Array.from(navLinks).find(l => l.getAttribute('href') === hash);
-        if (matchingLink && matchingLink !== activeLink) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          matchingLink.classList.add('active');
-          activeLink = matchingLink;
-          positionIndicator(matchingLink, true);
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!rAFScheduled) {
+          rAFScheduled = true;
+          requestAnimationFrame(handleScrollUpdate);
         }
+      },
+      { passive: true }
+    );
+
+    // Recompute metrics on resize and when fonts load
+    window.addEventListener('resize', () => {
+      recomputePageMetrics();
+      const currentActive = document.querySelector('.nav-links a.active') || activeLink;
+      positionIndicator(currentActive, false);
+    });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        if (window.innerWidth > 768) {
+          recomputeIndicatorMetrics();
+          const currentActive = document.querySelector('.nav-links a.active') || activeLink;
+          positionIndicator(currentActive, false);
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      if (window.innerWidth > 768) {
+        recomputeIndicatorMetrics();
+        const currentActive = document.querySelector('.nav-links a.active') || activeLink;
+        positionIndicator(currentActive, false);
       }
     });
 
-    // Check on initial load if hash is present
-    if (window.location.hash) {
-      const initialLink = Array.from(navLinks).find(l => l.getAttribute('href') === window.location.hash);
-      if (initialLink) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        initialLink.classList.add('active');
-        activeLink = initialLink;
-        positionIndicator(initialLink, false);
+    // Check hash on initial load & hashchange
+    function handleHash() {
+      const hash = window.location.hash;
+      if (hash) {
+        const matchingLink = Array.from(navLinks).find((l) => l.getAttribute('href') === hash);
+        if (matchingLink) {
+          setActiveLink(matchingLink, false);
+        }
       }
+    }
+
+    window.addEventListener('hashchange', handleHash);
+
+    // Initial position without blocking parsing/paint (only for desktop)
+    if (window.location.hash) {
+      handleHash();
+    } else if (window.innerWidth > 768) {
+      requestAnimationFrame(() => {
+        recomputeIndicatorMetrics();
+        positionIndicator(activeLink, false);
+      });
     }
   }
 });

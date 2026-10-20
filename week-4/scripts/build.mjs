@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
 import { parse } from 'node-html-parser';
@@ -132,8 +133,59 @@ async function build() {
   // Also write minified CSS to dist/style.css
   fs.writeFileSync(path.join(distDir, 'style.css'), minifiedCss.code, 'utf8');
 
+  // 6. Minify JS with esbuild to dist/assets/script.<hash8>.js and load with defer from <head>
+  const srcJsPath = path.join(srcDir, 'script.js');
+  const jsContent = fs.readFileSync(srcJsPath, 'utf8');
+  const minifiedJs = await esbuild.transform(jsContent, {
+    loader: 'js',
+    minify: true,
+    legalComments: 'none',
+  });
+
+  const hash8 = crypto.createHash('sha256').update(minifiedJs.code).digest('hex').slice(0, 8);
+  const scriptFileName = `script.${hash8}.js`;
+  const assetsDir = path.join(distDir, 'assets');
+  if (!fs.existsSync(assetsDir)) {
+    fs.mkdirSync(assetsDir, { recursive: true });
+  }
+
+  // Clean any existing hashed scripts in dist/assets
+  const existingAssets = fs.readdirSync(assetsDir);
+  for (const f of existingAssets) {
+    if (/^script(\.[a-f0-9]+)?\.js$/.test(f)) {
+      fs.unlinkSync(path.join(assetsDir, f));
+    }
+  }
+
+  const distScriptPath = path.join(assetsDir, scriptFileName);
+  fs.writeFileSync(distScriptPath, minifiedJs.code, 'utf8');
+  console.log(`  Minified JS to dist/assets/${scriptFileName} (${minifiedJs.code.length} bytes)`);
+
+  // Remove any old script tags (end-of-body or elsewhere)
+  const oldScriptTags = root.querySelectorAll('script');
+  for (const s of oldScriptTags) {
+    const src = s.getAttribute('src');
+    if (src && (src === 'script.js' || src.includes('script.'))) {
+      s.remove();
+    }
+  }
+
+  // Remove unminified dist/script.js if copied
+  const unminifiedDistScript = path.join(distDir, 'script.js');
+  if (fs.existsSync(unminifiedDistScript)) {
+    fs.unlinkSync(unminifiedDistScript);
+  }
+
+  // Add deferred script tag into <head>
+  const head = root.querySelector('head');
+  if (head) {
+    const scriptNode = parse(`<script defer src="assets/${scriptFileName}"></script>`);
+    head.appendChild(scriptNode);
+    console.log(`  Added deferred script tag to <head>: assets/${scriptFileName}`);
+  }
+
   fs.writeFileSync(distHtmlPath, root.toString(), 'utf8');
-  console.log('[build] Successfully transformed dist/index.html with inlined CSS & responsive pictures.');
+  console.log('[build] Successfully transformed dist/index.html with inlined CSS, deferred minified JS, & responsive pictures.');
   console.log('[build] Build completed successfully.');
 }
 
