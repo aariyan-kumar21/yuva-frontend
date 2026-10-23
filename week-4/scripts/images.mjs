@@ -233,8 +233,9 @@ export async function processImages() {
   }
 
   // Save manifest
-  fs.writeFileSync(path.join(imagesDistDir, 'manifest.json'), JSON.stringify(manifest, null, 2));
-  console.log('[images] Manifest written to dist/images/manifest.json');
+  const manifestPath = path.join(rootDir, 'perf', 'images-manifest.json');
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+  console.log('[images] Manifest written to perf/images-manifest.json');
 
   // Generate perf/images.md
   generateImagesMarkdown(imageReports);

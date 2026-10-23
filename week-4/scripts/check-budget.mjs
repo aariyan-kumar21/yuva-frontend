@@ -51,18 +51,20 @@ if (fs.existsSync(assetsDir)) {
 }
 checkMetric('JavaScript Bundle (Raw)', jsRawBytes, limits.jsRawBytes);
 
-// 2. CSS Bytes
-const distCssPath = path.join(distDir, 'style.css');
-let cssRawBytes = 0;
-if (fs.existsSync(distCssPath)) {
-  cssRawBytes = fs.readFileSync(distCssPath).length;
-}
-checkMetric('CSS Stylesheet (Raw)', cssRawBytes, limits.cssRawBytes);
-
-// 3. HTML parsing for First Load Requests and Transfer Weights
+// 2. HTML parsing for CSS Bytes, First Load Requests and Transfer Weights
 const htmlPath = path.join(distDir, 'index.html');
 const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 const root = parse(htmlContent);
+
+// CSS Bytes from inline <style> in dist/index.html
+let cssRawBytes = 0;
+const styleTags = root.querySelectorAll('style');
+for (const st of styleTags) {
+  cssRawBytes += Buffer.byteLength(st.text, 'utf8');
+}
+checkMetric('CSS Stylesheet (Raw Inline)', cssRawBytes, limits.cssRawBytes);
+
+// 3. First Load Requests and Transfer Weights
 
 // Compute Brotli size of HTML
 const htmlBrotli = zlib.brotliCompressSync(Buffer.from(htmlContent), {
@@ -137,7 +139,7 @@ if (fs.existsSync(fontsDir)) {
 }
 
 // All 13 images using optimized mobile AVIF variant from manifest
-const manifestPath = path.join(distDir, 'images', 'manifest.json');
+const manifestPath = path.join(rootDir, 'perf', 'images-manifest.json');
 if (fs.existsSync(manifestPath)) {
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
   for (const entry of Object.values(manifest)) {

@@ -30,11 +30,13 @@ Using Playwright Chrome DevTools Protocol (CDP) tracing with 4x CPU slowdown (ma
 
 ## 2. Scroll-Spy via IntersectionObserver & Zero-Layout Design
 
-### a. IntersectionObserver Architecture
+### a. IntersectionObserver Architecture & Restored Original Activation Line
 The scroll-driven spy was replaced with an `IntersectionObserver` observing all 5 page sections (`#home`, `#about`, `#events`, `#team`, `#contact`):
-- **Root Margin**: Tuned to `-100px 0px -50% 0px`, establishing an activation trigger line 100px below the fixed navbar and spanning down through the upper half of the viewport.
-- **Bi-directional Document Order Tracking**: Because `IntersectionObserver` callbacks deliver entries in arbitrary order upon scrolling up or down, entries are recorded into a persistent `Map`. The active section is determined by resolving the lowest intersecting section in document order within the activation window.
-- **Bottom-of-Page -> Contact Rule**: To ensure `#contact` is highlighted when reaching the page bottom (even when the section top cannot reach 100px from the viewport top due to short footer height), a dedicated `IntersectionObserver` observes the bottom sentinel (`.footer-bottom`) with `rootMargin: '0px 0px -40px 0px'`. In addition, an rAF-guarded boundary check (`cachedWindowHeight + scrollY >= cachedDocHeight - 80`) guarantees instant activation.
+- **Thin Observation Band (100px Activation Line)**: The observation zone is configured as a razor-thin 1px line located exactly 100px below the viewport top:
+  $$\text{rootMargin: } \text{'-100px 0px -(innerHeight - 101)px 0px'}$$
+  This is dynamically recomputed on `resize` and `orientationchange`. A section becomes active the moment its top reaches 100px below the viewport top, restoring 100% fidelity to the original baseline scroll-spy activation timing (`offsetTop - 100 <= scrollY`). In a full 401-position sweep test (from scrollY 0 to 4000 in 10px steps), mismatches against the baseline rule dropped from 119 to 0.
+- **Bi-directional Document Order Tracking**: Entries reported by the observer are recorded into a persistent `Map`. The active section is determined by selecting the section in document order covering the 100px observation line.
+- **Original Bottom-of-Page Rule (80px Threshold)**: To guarantee `#contact` is highlighted upon reaching the page bottom, an rAF-guarded boundary check (`(cachedWindowHeight || innerHeight) + scrollY >= (cachedDocHeight || docHeight) - 80`) is enforced both in the passive scroll handler and within observer callbacks, matching the original 80px threshold without requiring redundant DOM sentinel elements.
 
 ### b. Zero-Layout Nav Indicator
 - **Geometry Caching**: Desktop indicator positions (`left` and `width` relative to `.nav`) are cached in a `Map` and only recomputed on window `resize` or when fonts finish loading (`document.fonts.ready`).

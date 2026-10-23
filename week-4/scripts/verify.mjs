@@ -347,6 +347,61 @@ async function run() {
         outlineDetail
       );
 
+      // Desktop scroll-spy activation line sweep test (at 1440x900)
+      if (vp.name === 'desktop') {
+        await page.goto(distServer.url, { waitUntil: 'load' });
+        await page.evaluate(() => (document.fonts ? document.fonts.ready : Promise.resolve()));
+        await page.waitForTimeout(100);
+
+        const docInfo = await page.evaluate(() => {
+          const sectionIds = ['home', 'about', 'events', 'team', 'contact'];
+          const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+          return {
+            docHeight: document.documentElement.scrollHeight,
+            innerHeight: window.innerHeight,
+            sections: sections.map((s) => ({ id: s.id, offsetTop: s.offsetTop })),
+          };
+        });
+
+        function getExpectedSection(y) {
+          if (docInfo.innerHeight + y >= docInfo.docHeight - 80) return 'contact';
+          let expected = 'home';
+          for (const s of docInfo.sections) {
+            if (y >= s.offsetTop - 100) expected = s.id;
+          }
+          return expected;
+        }
+
+        let mismatches = 0;
+        let totalPositions = 0;
+        const mismatchDetails = [];
+        const maxSweep = Math.floor(docInfo.docHeight / 10) * 10;
+
+        for (let y = 0; y <= maxSweep; y += 10) {
+          await page.evaluate((top) => window.scrollTo(0, top), y);
+          await page.waitForTimeout(10);
+          const activeNav = await page.evaluate(() =>
+            document.querySelector('.nav-links a.active')?.getAttribute('href')?.replace('#', '')
+          );
+          const expected = getExpectedSection(y);
+          totalPositions++;
+          if (activeNav !== expected) {
+            mismatches++;
+            if (mismatchDetails.length < 5) {
+              mismatchDetails.push({ y, activeNav, expected });
+            }
+          }
+        }
+
+        reportItem(
+          `[${vp.name}] Scroll-spy sweep matches original rule (<= 3 boundary mismatches)`,
+          mismatches <= 3,
+          `${mismatches} mismatches of ${totalPositions} positions${
+            mismatches > 0 ? ` (samples: ${JSON.stringify(mismatchDetails)})` : ''
+          }`
+        );
+      }
+
       // Mobile specific interactive checks (at 390x844)
       if (vp.name === 'mobile') {
         await page.goto(distServer.url, { waitUntil: 'load' });

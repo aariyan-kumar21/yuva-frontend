@@ -276,52 +276,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionIds = ['home', 'about', 'events', 'team', 'contact'];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
     const visibleSectionMap = new Map();
+    let sectionObserver = null;
 
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        if (isUserClicking) return;
-
-        entries.forEach((entry) => {
-          visibleSectionMap.set(entry.target.id, entry);
-        });
-
-        // Find intersecting sections in document order
-        const intersecting = [];
-        for (const id of sectionIds) {
-          const entry = visibleSectionMap.get(id);
-          if (entry && entry.isIntersecting) {
-            intersecting.push(entry);
-          }
-        }
-
-        if (intersecting.length > 0) {
-          const activeEntry = intersecting[intersecting.length - 1];
-          setActiveSection(activeEntry.target.id, true);
-        }
-      },
-      {
-        rootMargin: '-100px 0px -50% 0px',
+    function setupSectionObserver() {
+      if (sectionObserver) {
+        sectionObserver.disconnect();
       }
-    );
-
-    sections.forEach((section) => sectionObserver.observe(section));
-
-    // Bottom sentinel observer for the bottom-of-page -> Contact rule
-    const footerBottom = document.querySelector('.footer-bottom') || document.querySelector('footer');
-    if (footerBottom) {
-      const bottomObserver = new IntersectionObserver(
+      const bottomMargin = -(window.innerHeight - 101);
+      sectionObserver = new IntersectionObserver(
         (entries) => {
           if (isUserClicking) return;
-          if (entries[0] && entries[0].isIntersecting) {
+
+          entries.forEach((entry) => {
+            visibleSectionMap.set(entry.target.id, entry);
+          });
+
+          // Bottom reached -> contact section is active
+          if ((cachedWindowHeight || window.innerHeight) + window.scrollY >= (cachedDocHeight || document.documentElement.scrollHeight) - 80) {
             setActiveSection('contact', true);
+            return;
+          }
+
+          // Find intersecting sections in document order covering the 100px line
+          const intersecting = [];
+          for (const id of sectionIds) {
+            const entry = visibleSectionMap.get(id);
+            if (entry && entry.isIntersecting) {
+              intersecting.push(entry);
+            }
+          }
+
+          if (intersecting.length > 0) {
+            const activeEntry = intersecting[intersecting.length - 1];
+            setActiveSection(activeEntry.target.id, true);
           }
         },
         {
-          rootMargin: '0px 0px -40px 0px',
+          rootMargin: `-100px 0px ${bottomMargin}px 0px`,
         }
       );
-      bottomObserver.observe(footerBottom);
+
+      sections.forEach((section) => sectionObserver.observe(section));
     }
+
+    setupSectionObserver();
 
     // Consolidated single passive scroll listener guarded by requestAnimationFrame
     let rAFScheduled = false;
@@ -364,11 +362,17 @@ document.addEventListener('DOMContentLoaded', () => {
       { passive: true }
     );
 
-    // Recompute metrics on resize and when fonts load
+    // Recompute metrics on resize, orientationchange, and when fonts load
     window.addEventListener('resize', () => {
       recomputePageMetrics();
+      setupSectionObserver();
       const currentActive = document.querySelector('.nav-links a.active') || activeLink;
       positionIndicator(currentActive, false);
+    });
+
+    window.addEventListener('orientationchange', () => {
+      recomputePageMetrics();
+      setupSectionObserver();
     });
 
     if (document.fonts && document.fonts.ready) {
