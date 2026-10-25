@@ -1,0 +1,122 @@
+[
+  {
+    "id": "TRX-9081",
+    "customer": "Aarav Sharma",
+    "email": "aarav.s@technova.in",
+    "category": "Enterprise SaaS",
+    "region": "Asia-Pacific",
+    "date": "2026-09-12",
+    "amount": 4250.00,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9082",
+    "customer": "Elena Rostova",
+    "email": "elena@cloudscale.io",
+    "category": "Cloud Hosting",
+    "region": "Europe",
+    "date": "2026-09-15",
+    "amount": 1890.50,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9083",
+    "customer": "Marcus Vance",
+    "email": "mvance@fintechcorp.com",
+    "category": "Security Suite",
+    "region": "North America",
+    "date": "2026-09-18",
+    "amount": 3100.00,
+    "status": "Pending"
+  },
+  {
+    "id": "TRX-9084",
+    "customer": "Priya Nair",
+    "email": "priya@designcraft.co",
+    "category": "UI/UX Tools",
+    "region": "Asia-Pacific",
+    "date": "2026-09-20",
+    "amount": 650.00,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9085",
+    "customer": "Lucas Meyer",
+    "email": "l.meyer@berlinware.de",
+    "category": "Enterprise SaaS",
+    "region": "Europe",
+    "date": "2026-09-22",
+    "amount": 5400.00,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9086",
+    "customer": "Sophia Chen",
+    "email": "schen@datapulse.ai",
+    "category": "API Services",
+    "region": "North America",
+    "date": "2026-09-25",
+    "amount": 1200.75,
+    "status": "Refunded"
+  },
+  {
+    "id": "TRX-9087",
+    "customer": "Rohan Deshmukh",
+    "email": "rohan@nextgenretail.in",
+    "category": "Cloud Hosting",
+    "region": "Asia-Pacific",
+    "date": "2026-09-28",
+    "amount": 2750.00,
+    "status": "Pending"
+  },
+  {
+    "id": "TRX-9088",
+    "customer": "Hannah Abbott",
+    "email": "habbott@londonmedia.uk",
+    "category": "UI/UX Tools",
+    "region": "Europe",
+    "date": "2026-10-01",
+    "amount": 920.00,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9089",
+    "customer": "David Kim",
+    "email": "dkim@seoulsoft.kr",
+    "category": "Security Suite",
+    "region": "Asia-Pacific",
+    "date": "2026-10-04",
+    "amount": 3600.00,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9090",
+    "customer": "Carlos Mendoza",
+    "email": "carlos@latampay.mx",
+    "category": "API Services",
+    "region": "North America",
+    "date": "2026-10-07",
+    "amount": 1450.25,
+    "status": "Completed"
+  },
+  {
+    "id": "TRX-9091",
+    "customer": "Nadia Al-Mansoor",
+    "email": "nadia@oasisventures.ae",
+    "category": "Enterprise SaaS",
+    "region": "Europe",
+    "date": "2026-10-10",
+    "amount": 6100.00,
+    "status": "Pending"
+  },
+  {
+    "id": "TRX-9092",
+    "customer": "Liam O'Connor",
+    "email": "liam@dublintech.ie",
+    "category": "Cloud Hosting",
+    "region": "Europe",
+    "date": "2026-10-12",
+    "amount": 2150.00,
+    "status": "Completed"
+  }
+]

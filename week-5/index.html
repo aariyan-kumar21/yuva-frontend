@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PulseMetrics - Accessible & Responsive Analytics Dashboard">
+  <title>PulseMetrics | Analytics Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Defer non-blocking script execution for optimal First Contentful Paint -->
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" aria-label="Sidebar Navigation">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">⚡</span>
+        <span class="brand-title">PulseMetrics</span>
+      </div>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#kpi-section" class="nav-link active" aria-current="page">Overview</a></li>
+          <li><a href="#charts-section" class="nav-link">Visual Analytics</a></li>
+          <li><a href="#table-section" class="nav-link">Transactions</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <p class="version-tag">v1.0.0 • Week 5 Final</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div>
+          <h1 class="page-title">Revenue & Operations</h1>
+          <p class="page-subtitle">Real-time performance metrics and transaction records</p>
+        </div>
+        <div class="header-actions">
+          <button id="theme-toggle" class="btn btn-secondary" type="button" aria-pressed="false" aria-label="Toggle dark mode">
+            <span id="theme-icon" aria-hidden="true">🌙</span>
+            <span id="theme-text">Dark Mode</span>
+          </button>
+          <button id="export-btn" class="btn btn-primary" type="button">
+            Export CSV
+          </button>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <!-- Screen Reader Status Announcer -->
+        <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+        <!-- KPI Summary Cards -->
+        <section id="kpi-section" aria-labelledby="kpi-heading" class="section-block">
+          <h2 id="kpi-heading" class="sr-only">Key Performance Indicators</h2>
+          <div class="kpi-grid">
+            <article class="kpi-card">
+              <span class="kpi-label">Total Revenue</span>
+              <strong class="kpi-value" id="kpi-revenue">$0.00</strong>
+              <span class="kpi-meta">Filtered selection total</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-label">Transactions</span>
+              <strong class="kpi-value" id="kpi-count">0</strong>
+              <span class="kpi-meta">Matching records</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-label">Avg. Order Value</span>
+              <strong class="kpi-value" id="kpi-average">$0.00</strong>
+              <span class="kpi-meta">Per transaction</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-label">Completion Rate</span>
+              <strong class="kpi-value" id="kpi-completion">0%</strong>
+              <span class="kpi-meta">Completed orders ratio</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- Interactive Charts & Breakdown Panel -->
+        <section id="charts-section" aria-labelledby="charts-heading" class="section-block charts-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h2 id="charts-heading" class="panel-title">Revenue by Category</h2>
+            </div>
+            <!-- Accessible SVG Bar Chart rendered dynamically -->
+            <div id="category-chart" class="chart-container" role="img" aria-label="Bar chart showing revenue breakdown by product category"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2 class="panel-title">Regional Distribution</h2>
+            </div>
+            <div id="region-list" class="region-breakdown"></div>
+          </div>
+        </section>
+
+        <!-- Interactive Filter & Data Table Section -->
+        <section id="table-section" aria-labelledby="table-heading" class="section-block panel">
+          <div class="panel-header">
+            <h2 id="table-heading" class="panel-title">Transaction Directory</h2>
+            <span id="results-count" class="badge">Showing 0 records</span>
+          </div>
+
+          <!-- Filter Controls -->
+          <form id="filter-form" class="controls-bar" role="search" aria-label="Filter transactions">
+            <div class="control-group search-group">
+              <label for="search-input">Search Customer or ID</label>
+              <input type="search" id="search-input" placeholder="e.g., Aarav or TRX-9081..." autocomplete="off">
+            </div>
+
+            <div class="control-group">
+              <label for="category-filter">Category</label>
+              <select id="category-filter">
+                <option value="ALL">All Categories</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label for="status-filter">Status</label>
+              <select id="status-filter">
+                <option value="ALL">All Statuses</option>
+                <option value="Completed">Completed</option>
+                <option value="Pending">Pending</option>
+                <option value="Refunded">Refunded</option>
+              </select>
+            </div>
+
+            <div class="control-group control-actions">
+              <button type="reset" id="reset-filters" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+
+          <!-- Responsive Table Container -->
+          <div class="table-responsive" tabindex="0" role="region" aria-labelledby="table-heading">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col" aria-sort="none">
+                    <button type="button" class="sort-btn" data-sort="id">ID <span class="sort-indicator" aria-hidden="true">↕</span></button>
+                  </th>
+                  <th scope="col" aria-sort="none">
+                    <button type="button" class="sort-btn" data-sort="customer">Customer <span class="sort-indicator" aria-hidden="true">↕</span></button>
+                  </th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Region</th>
+                  <th scope="col" aria-sort="descending">
+                    <button type="button" class="sort-btn" data-sort="date">Date <span class="sort-indicator" aria-hidden="true">↓</span></button>
+                  </th>
+                  <th scope="col" aria-sort="none">
+                    <button type="button" class="sort-btn" data-sort="amount">Amount <span class="sort-indicator" aria-hidden="true">↕</span></button>
+                  </th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Accessible Details Modal Dialog -->
+  <dialog id="details-modal" class="modal" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Transaction Details</h2>
+        <button type="button" id="close-modal" class="btn-icon" aria-label="Close details modal">✕</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </dialog>
+</body>
+</html>
