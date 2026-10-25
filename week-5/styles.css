@@ -90,6 +90,7 @@ body {
   display: grid;
   grid-template-columns: 240px 1fr;
   min-height: 100vh;
+  align-items: start;
 }
 
 .sidebar {
@@ -98,7 +99,10 @@ body {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .brand {
@@ -129,6 +133,10 @@ body {
 .nav-link:hover, .nav-link.active {
   background-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
 }
 
 .version-tag {
